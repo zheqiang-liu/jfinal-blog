@@ -1,0 +1,132 @@
+<#include "../layout.html"/>
+<@layout title="${article.title} -- ${title}" keywords="${article.tags}" desc="${article._desc}">
+<link type="text/css" rel="stylesheet" href="/syntaxhighlighter/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="/syntaxhighlighter/styles/shThemeDefault.css"/>
+<script type="text/javascript" src="/syntaxhighlighter/scripts/shCore.js"></script>
+<div class="detail">
+	<div class="p_n">
+		<#if previous??>
+			<a title="${previous.title}" href="/article/${previous.id}.html" class="fl">&lt;&lt;${previous.title}</a>
+		<#else>
+			<a href="javascript:;" class="fl">&lt;&lt;没有上一篇博客</a>
+		</#if>
+		<#if next??>
+			<a title="${next.title}" href="/article/${next.id}.html" class="fr">${next.title}&gt;&gt;</a>
+		<#else>
+			<a href="javascript:;" class="fr">没有下一篇博客&gt;&gt;</a>
+		</#if>
+		<div class="clear"></div>
+	</div>
+	<h1 class="title">
+		[${article._type}]   <span title="${article.title}">${article.title}</span>
+	</h1>
+	<div class="other">
+			发布于:${article._createDateTime},已有 <strong>${article.viewCount}</strong> 次阅读 ，共 <strong>${article.replyCount}</strong> 评论
+	</div>
+	<div class="category_project">
+		<span class="category">
+			类别: 
+			<a href="/categorySuper/${article.categorySub.pcategory.id}.html">
+				${article.categorySub.pcategory.name}
+			</a>
+			/
+			<a href="/categorySub/${article.categorySub.id}.html">
+				${article.categorySub.name}
+			</a>
+		</span>
+		<span class="project">
+			项目: <a href="/project/${article.project.id}.html">${article.project.name}</a>
+		</span>
+	</div>
+	<div class="content">
+		${article._content}
+	</div>
+	<#if article.type == 0>
+	<div class="copyright_me">
+		声明：此文是作者原创，转载请注明地址。
+	</div>
+	<#else>
+	<div class="copyright">
+		本文转载于:<a href="${article.url}" target="_blank">${article.url}</a>
+	</div>
+	</#if>
+	<div class="tags">
+		<strong>关键字:</strong>
+		<#list article._tags as tag>
+		<a title="${tag}" href="/tag/${tag}.html" class="tag">
+			${tag}
+		</a>
+		</#list>
+	</div>
+	<div class="p_n">
+		<#if previous??>
+			<a title="${previous.title}" href="/article/${previous.id}.html" class="fl">&lt;&lt;${previous.title}</a>
+		<#else>
+			<a href="javascript:;" class="fl">&lt;&lt;没有上一篇博客</a>
+		</#if>
+		<#if next??>
+			<a title="${next.title}" href="/article/${next.id}.html" class="fr">${next.title}&gt;&gt;</a>
+		<#else>
+			<a href="javascript:;" class="fr">没有下一篇博客&gt;&gt;</a>
+		</#if>
+		<div class="clear"></div>
+	</div>
+	<div class="relates">
+		<h3>相关博文:</h3>
+		<ul>
+			<#list article.relates as article>
+				<li><a href="/article/${article.id}.html">${article.title}</a></li>
+			</#list>
+		</ul>
+	</div>
+	<h3><a name="comments"></a>评论:</h3>
+	<#if ( article.comments?size > 0 ) >
+		<ul class="list_comments">
+			<#list article.comments as comment>
+					<li class="comment">
+						<div class="index">
+							${comment_index + 1}
+						</div>
+						<div class="body">
+							<div><strong>${comment.nick}</strong> 评论于:
+								${comment._dateTime}</div>
+							<div class="comment_content">
+								${comment.content}
+							</div>
+							<a href="javascript:;" class="add_comment" data-id="${comment.id}">评论此评论</a>
+							<#if (comment._comments?size > 0)>
+								<div class="replies">
+									<h4>共有${comment._comments?size}条评论</h4>
+									<ul>
+									<#list comment._comments as _comment>
+										<li>
+											<div class="miniIndex">
+												${_comment_index + 1}
+											</div>
+											<div>
+												&nbsp;&nbsp;${_comment.content}
+												&nbsp;&nbsp;(  ${_comment.nick} 
+												评论于: ${_comment._dateTime} )
+											</div>
+										</li>
+									</#list>
+									</ul>
+								</div>
+							</#if>
+						</div>
+					</li>
+			</#list>
+		</ul>
+	<#else>
+		<div class="no_comment">
+			暂无评论
+		</div>
+	</#if>
+	<a href="javascript:;" class="add_comment">点此发表您对此文的评论</a>
+	<script type="text/javascript">
+		var comment_size = ${article.comments?size};
+		var article_id  = ${article.id};
+	</script>
+	<script type="text/javascript" src="/js/article/detail.js"></script>
+</div>
+</@layout>

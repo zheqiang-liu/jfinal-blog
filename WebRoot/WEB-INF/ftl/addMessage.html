@@ -1,0 +1,78 @@
+<div id="giveMeMessage">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				昵称:
+			</td>
+			<td>
+				<input type="text" class="w_170" id="message_nick">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				邮箱:
+			</td>
+			<td>
+				<input type="text" class="w_170" id="message_email">
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				内容:
+			</td>
+			<td>
+				<textarea class="w_170" id="message_content"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				
+			</td>
+			<td>
+				<button id="submit">提交</button>
+				<button id="cancel">取消</button>
+			</td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+	$('#submit').click(function(){
+		var nick  = $('#message_nick').val();
+		var email = $('#message_email').val();
+		var content = $('#message_content').val();
+		if(nick.length < 3){
+			message('请填写您的昵称,长度不少3个字');
+			$('#message_nick').focus();
+			return false;
+		}
+		if(!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email)){
+			message('请正确填写邮箱');
+			$('#message_email').focus();
+			return false;
+		}
+		if(content.length < 5){
+			message('请填写评论内容,内容最少5个字');
+			$('#message_content').focus();
+			return false;
+		}
+		$.post('/addMessageSubmit.html',{
+			'message.email':email,
+			'message.content':content,
+			'message.nick':nick
+		},function(data){
+			if(data.error){
+
+			}else{
+				$('#giveMeMessage').hide();
+				$('#message_nick').val('');
+				$('#message_email').val('');
+				$('#message_content').val('');
+
+				message('留言成功，刷新将出现在首页的最新留言中~~');
+			}
+		});
+	});
+	$('#cancel').click(function(){
+		$('#giveMeMessage').fadeOut();
+	});
+</script>

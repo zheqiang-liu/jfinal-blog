@@ -1,0 +1,31 @@
+<#include "../layout.html"/>
+<@layout>
+	<div id="form">
+		<div class="form_row">
+			<label class="span2">username:</label>
+			<div>
+				<input id="user.username" type="text">
+			</div>
+		</div>
+		<div class="form_row">
+			<label class="span2">password:</label>
+			<div>
+				<input id="user.password" type="password">
+			</div>
+		</div>
+		<div class="form_row">
+			<button id="add" type="button">添加</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#add').click(function(){
+			$.post('/admin/user/addUser',$('#form').toJson(),function(data){
+				if(data.error){
+
+				}else{
+					location.href = "/admin/user/list.html";
+				}
+			});
+		});
+	</script>
+</@layout>

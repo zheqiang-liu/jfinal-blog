@@ -1,0 +1,25 @@
+<#include "../../dialog.html"/>
+<@dialog title="添加项目">
+<div id="form">
+	<div class="form_row">
+		<label class="span2">名称:</label>
+		<div><input id="project_name" class="form" type="text"></div>
+	</div>
+	<div class="form_row">
+		<button id="add" type="button">添加</button>
+	</div>
+	<script type="text/javascript">
+		$('#add').click(function(){
+			var data = {};
+			data['project.name'] = $('#project_name').val();
+			$.post('/admin/article/project/addProjectSubmit',data,function(data){
+				if(data.error){
+
+				}else{
+					location.href = "/admin/article/project.html";
+				}
+			});
+		});
+	</script>
+</div>
+</@dialog>

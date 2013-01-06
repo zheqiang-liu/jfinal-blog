@@ -1,0 +1,57 @@
+<#include "layout.html"/>
+<@layout>
+		<@pagination prefix=""/>
+		<div class="table_row table_row_th">
+			<div class="span1">
+				序号
+			</div>
+			<div class="span2">
+				昵称
+			</div>
+			<div class="span5">
+				邮箱
+			</div>
+			<div class="span6">
+				内容
+			</div>
+			<div class="span2">
+				操作
+			</div>
+		</div>
+	<#list page.list as message>
+		<div class="table_row">
+			<div class="span1">
+				${message_index + 1}
+			</div>
+			<div class="span2">
+				${message.nick}
+			</div>
+			<div class="span5">
+				${message.email}
+			</div>
+			<div class="span6">
+				${message.content}
+			</div>
+			<div class="span1">
+				<a href="javascript:;" class="delete" data-id="${message.id}">删除</a>
+			</div>
+		</div>
+	</#list>
+	<@pagination prefix=""/>
+	<script type="text/javascript">
+		$('.delete').click(function(){
+			var $this = $(this);
+			if(!confirm('您真的要删除吗?')){
+				return false;
+			}
+			$.getJSON("/admin/deleteMessage.html",{'id':$this.attr('data-id')},function(data){
+				if(data.error){
+
+				}else{
+					message('删除成功');
+					$this.parent().parent().remove();
+				}
+			});
+		});
+	</script>
+</@layout>

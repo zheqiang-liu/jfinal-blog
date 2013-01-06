@@ -1,0 +1,37 @@
+<#include "../layout.html"/>
+<@layout>
+	<div>
+		<#if pFolder??>
+		 父目录: <a href="/admin/picture/open/${pFolder}.html">${pFolder}</a>
+		</#if>
+	</div>
+	<div class="table_row table_row_th">
+		<div class="span1">
+			序号
+		</div>
+		<div class="span3">
+			文件夹
+		</div>
+		<div class="span1">
+			操作
+		</div>
+	</div>
+	<#list imgs as img>
+		<div class="table_row">
+			<div class="span1">
+				${img_index + 1}
+			</div>
+			<div class="span3">
+				${img.name}
+			</div>
+			<div class="span1">
+				<#if path??>
+					<a href="/admin/picture/open/${path}_${img.name}.html?pFolder=${path}">查看</a>
+				<#else>
+					<a href="/admin/picture/open/${img.name}.html">查看</a>
+				</#if>
+				
+			</div>
+		</div>
+	</#list>
+</@layout>

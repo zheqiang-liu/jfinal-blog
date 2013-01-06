@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin
+Disallow: /categorySuper
+Disallow: /categorySub
+Disallow: /tag
+Disallow: /img
+Disallow: /file

@@ -1,0 +1,19 @@
+<#include "../layout.html"/>
+<@layout>
+	<#list page.list as user>
+		<div class="table_row">
+			<div class="span1">
+				${user.id}
+			</div>
+			<div class="span2">
+				${user.username}
+			</div>
+			<div class="span1">
+				删除
+			</div>
+			<div class="span1">
+				编辑
+			</div>
+		</div>
+	</#list>
+</@layout>

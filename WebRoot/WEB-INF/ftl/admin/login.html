@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <title>首页</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  		<meta http-equiv="Content-Language" content="zh-CN">
+	</head>
+	<!-- 2.页面代码 -->
+	<body>
+	    <div>
+	    	<p>
+	    		username:<input type="text" id="username" class="form">
+	    	</p>
+	    	<p>
+	    		password:<input type="password" id="password" class="form">
+	    	</p>
+	    	<p>
+	    		<button id="login">登陆</button>
+	    	</p>
+	    	<p>
+	    		<span id="info"></span>
+	    	</p>
+	    </div>
+	    <script type="text/javascript" src="/js/jquery.js"></script>
+	    <script type="text/javascript" src="/js/sha1.js"></script>
+	    <script type="text/javascript">
+	    	$('#login').click(function(){
+	    		$.ajax({
+	    			url:'/admin/login',
+	    			type:'post',
+	    			dataType:'json',
+	    			data:{
+	    				'user.username':$('#username').val(),
+	    				'user.password':hex_sha1($('#password').val())
+	    			},
+	    			success : function(data){
+	    				$('#info').text(data.msg);
+	    				if(data.error){
+	    					
+	    				}else{
+	    					location.href="/admin";
+	    				}
+	    			}
+	    		});
+	    	});
+	    </script>
+	</body>
+</html>

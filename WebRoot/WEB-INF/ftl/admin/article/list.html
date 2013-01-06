@@ -1,0 +1,77 @@
+<#include "../layout.html"/>
+<@layout>
+		<@pagination prefix=""/>
+		<div class="table_row table_row_th">
+			<div class="span1">
+				序号
+			</div>
+			<div class="span4">
+				标题
+			</div>
+			<div class="span2">
+				标签
+			</div>
+			<div class="span4">
+				创建时间
+			</div>
+			<div class="span3">
+				类别
+			</div>
+			<div class="span1">
+				类型
+			</div>
+			<div class="span4">
+				转载地址
+			</div>
+			<div class="span2">
+				项目
+			</div>
+			<div class="span3">
+				操作
+			</div>
+		</div>
+	<#list page.list as article>
+		<div class="table_row">
+			<div class="span1">
+				${article.id}
+			</div>
+			<div class="span4">
+				${article.title}
+			</div>
+			<div class="span2">
+				<#list article._tags as tag>
+					${tag}&nbsp;
+				</#list>
+			</div>
+			<div class="span4">
+				${article._createDateTime}
+			</div>
+			<div class="span3">
+				${article.categorySub.name}
+			</div>
+			<div class="span1">
+				${article._type}
+			</div>
+			<div class="span4">
+				<a target="_blank" href="${article.url!}">${article.url!}</a>
+			</div>
+			<div class="span2">
+				${article.project.name}
+			</div>
+			<div class="span1">
+				<a class="del" href="/admin/article/delete/${article.id}.html">删除</a>
+			</div>
+			<div class="span1">
+				<a href="/admin/article/edit/${article.id}.html">编辑</a>
+			</div>
+			<div class="span1">
+				<#if article.finish == true>
+				  <a href="javascript:;" onclick="article_not_finish(${article.id},this);">未结稿</a>
+				<#else>
+				  <a href="javascript:;" onclick="article_finish(${article.id},this);">结稿</a>
+				</#if>
+			</div>
+		</div>
+	</#list>
+	<@pagination prefix=""/>
+</@layout>

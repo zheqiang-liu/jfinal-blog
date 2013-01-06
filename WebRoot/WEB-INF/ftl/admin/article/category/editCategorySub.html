@@ -1,0 +1,40 @@
+<#include "../../dialog.html"/>
+<@dialog title="修改二级菜单:${categorySub.name} 父菜单:${categorySub.pcategory.name}">
+	<div id="form">
+		<div class="form_row">
+			<label class="span2">名称:</label>
+			<div><input id="category_name" class="form" type="text" value="${categorySub.name}"></div>
+		</div>
+		<div class="form_row">
+			<label class="span2">顺序值:</label>
+			<div>
+				<select id="category_order">
+					<#list 0..count-1 as index>
+						<option value="${index}">${index}</option>
+					</#list>
+				</select>
+			</div>
+		</div>
+		<div class="form_row">
+			<button id="add" type="button">修改</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#category_order').val(${categorySub.order});
+		var pId = ${categorySub.pcategory.id};
+		$('#add').click(function(){
+			var data = {};
+			data['categorySub.id'] = ${categorySub.id};
+			data['categorySub.name'] = $('#category_name').val();
+			data['categorySub.order'] = $('#category_order').val();
+			data['categorySub.pId'] = pId;
+			$.post('/admin/article/category/editCategorySubSubmit',data,function(data){
+				if(data.error){
+
+				}else{
+					location.href = "/admin/article/category.html";
+				}
+			});
+		});
+	</script>
+</@dialog>

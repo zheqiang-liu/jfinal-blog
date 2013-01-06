@@ -1,0 +1,73 @@
+<#include "../../layout.html"/>
+<@layout>
+	<div>
+		<a href="/admin/article/category/refreshInMenu" target="iframe">刷新菜单</a>
+	</div>
+	<#list categoryList as category>
+		<div class="table_row" data_id="${category.id}">
+			<div class="span1">
+				${category.id}
+			</div>
+			<div class="span4">
+				${category.name}
+			</div>
+			<div class="span1">
+				${category.order}
+			</div>
+			<div class="span1">
+				<a class="del" href="/admin/article/category/deleteCategorySuper/${category.id}.html">删除</a>
+			</div>
+			<div class="span1">
+				<a href="/admin/article/category/editCategorySuper/${category.id}.html" target="iframe" onclick="open_dialog(this)">编辑</a>
+			</div>
+			<div class="span2">
+				<a href="/admin/article/category/addCategorySub.html?pId=${category.id}" target="iframe" onclick="open_dialog(this)">添加子类别</a>
+			</div>
+			<div clss="span1">
+				<button type="button" class="show_categorySub">显示子类别</button>
+			</div>
+		</div>
+	</#list>
+	<div>
+		<a onclick="open_dialog(this)" href="/admin/article/category/addCategorySuper.html" target="iframe">添加一级类别</a>
+	</div>
+	<style type="text/css">
+		.categorySub{
+			margin-left: 20px;
+		}
+
+	</style>
+	<script type="text/javascript">
+		var template = ['<div class="table_row categorySub">',
+			'<div class="span1">{category.id}</div>',
+			'<div class="span4">{category.name}</div>',
+			'<div class="span1">{category.order}</div>',
+			'<div class="span1">',
+			'<a class="del" href="/admin/article/category/deleteCategorySub/{category.id}.html">删除</a>',
+			'</div>',
+			'<div class="span1">',
+			'<a href="/admin/article/category/editCategorySub/{category.id}.html"',
+			'target="iframe" onclick="open_dialog(this)">编辑</a></div>',
+		    '</div>'].join('');
+		$('.show_categorySub').toggle(function(){
+			var $self = $(this);
+			var $row = $self.text('隐藏子类别').parent().parent();
+			var data = {};
+			data['pId'] = $row.attr('data_id');
+			$.getJSON('/admin/article/category/loadCategorySub.html',data,function(datas){
+				$row.after('<div></div>');
+				if(datas.length == 0){
+					alert('该类无子类别');
+					$self.click();
+					return;
+				}
+				$.each(datas,function(index,data){
+					var row = template.replace(/{category.id}/g,data.id).replace(/{category.name}/g,data.name).replace(/{category.order}/g,data.order);
+					$row.next().append(row);
+				});
+			});
+		},function(){
+			$(this).text('显示子类别').parent().parent().next().remove();
+		});
+	</script>
+</@layout>

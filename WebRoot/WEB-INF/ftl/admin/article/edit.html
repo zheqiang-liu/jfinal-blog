@@ -1,0 +1,177 @@
+<#include "../layout.html"/>
+<@layout>
+	<div id="form">
+		<div class="form_row">
+			<label class="span2">标题</label>
+			<div><input id="article_title" class="span6 form" type="text" value="${article.title}"></div>
+		</div>
+		<div class="form_row">
+			<label class="span2">类型</label>
+			<div>
+				<input type="radio" checked="checked" name="type" value="0">原创
+				<input type="radio" name="type" id="type_1" value="1">转载
+			</div>
+		</div>
+		<div class="form_row" id="url_article_url">
+			<label class="span2">转载地址</label>
+			<div><input type="text" class="span6 form" value="${article.url!}" id="article_url"></div>
+		</div>
+		<div class="form_row">
+			<label class="span2">类别</label>
+			<div>
+				<select class="span6 form" id="article_category_id">
+				<#list categorySubList as categorySub>
+					<option value="${categorySub.id}"
+					 <#if article.categorySub.id == categorySub.id>
+					 	selected="selected"
+					 </#if>
+					>${categorySub.name}</option>
+				</#list>
+				</select>
+			</div>
+		</div>
+		<div class="form_row">
+			<label class="span2">项目</label>
+			<div>
+				<select class="span6 form" id="article_project_id">
+				<#list projectList as project>
+					<option value="${project.id}"
+					 <#if article.project.id == project.id>
+					 	selected="selected"
+					 </#if>
+					>${project.name}</option>
+				</#list>
+				</select>
+			</div>
+		</div>
+		<div class="form_row">
+			<label class="span2">内容</label>
+			<div><textarea id="article_content" class="form" >${article.content}</textarea></div>
+		</div>
+		<div class="form_row">
+			<label class="span2">标签</label>
+			<div><input id="article_tags" value="${article.tags}" class="form">
+				<div>请以逗号分隔</div>
+			</div>
+			
+		</div>
+		<div class="form_row">
+			<button id="edit" type="button">修改</button>
+			<button id="editTemp" type="button">暂存</button>
+		</div>
+	</div>
+	<a href="/article/${article.id}.html" id="view_detail"></a>
+	<style type="text/css">
+		#article_content{
+			width: 900px;
+			height: 500px;
+		}
+		#article_tags{
+			width: 600px;
+		}
+		#url_article_url{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" src="/editor/kindeditor-min.js"></script>
+	<script type="text/javascript" src="/js/sha1.js"></script>
+	<script type="text/javascript">
+		var editor;
+		KindEditor.ready(function(K) {
+		      editor = K.create('#article_content',{
+		      	items:[
+					        'source','code','undo', 'redo', '|', 'preview', 'template' , 'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+					        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+					        'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+					        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+					        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+					        'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+					        'anchor', 'link', 'unlink','about'
+						],
+				resizeType:1,
+				uploadJson : '/admin/file/upload',
+				allowFileManager : false,
+				filterMode : false
+		      });
+		});
+		$('input[name=type]').click(function(){ 
+			if(this.value && this.checked){
+				$('#url_article_url').show();
+			}
+			if(0 == this.value){
+				$('#url_article_url').hide();
+			}
+		});
+		$('#edit').click(function(){
+			editor.sync();
+			var data = {};
+			data['article.id'] = ${article.id};
+			data['article.title'] = $('#article_title').val(); 
+			data['article.url'] = $('#article_url').val();
+			data['article.categorySubId'] = $('#article_category_id').val();
+			data['article.projectId'] = $('#article_project_id').val();
+			data['article.content'] = $('#article_content').val();
+			data['article.tags'] = $('#article_tags').val();
+			data['article.type'] = $('input[name=type]:checked').val();
+			$.post('/admin/article/editArticle/${article.id}.html',data,function(data){
+				if(data.error){
+
+				}else{
+					location.href = '/admin/article.html';
+				}
+			});
+		});
+		$('#editTemp').click(function(){
+			editor.sync();
+			var data = {};
+			data['article.id'] = ${article.id};
+			data['article.title'] = $('#article_title').val(); 
+			data['article.url'] = $('#article_url').val();
+			data['article.categorySubId'] = $('#article_category_id').val();
+			data['article.projectId'] = $('#article_project_id').val();
+			data['article.content'] = $('#article_content').val();
+			data['article.tags'] = $('#article_tags').val();
+			data['article.type'] = $('input[name=type]:checked').val();
+			$.post('/admin/article/editTempArticle',data,function(data){
+				if(data.error){
+
+				}else{
+					message('已成功保存...');
+				}
+			});
+		});
+		var sha1 = 0;
+		var sha2 = 0;
+		setInterval(function(){
+			editor.sync();
+			var data = {};
+			data['content'] = $('#article_content').val();
+			var sha2 = hex_sha1(data['content']);
+			if(sha2 == sha1){
+				return false;
+			}else{
+				sha1 = sha2;
+			}
+			console.log('start saving...');
+			data['article.id'] = ${article.id};
+			data['article.title'] = $('#article_title').val(); 
+			data['article.url'] = $('#article_url').val();
+			data['article.categorySubId'] = $('#article_category_id').val();
+			data['article.projectId'] = $('#article_project_id').val();
+			data['article.tags'] = $('#article_tags').val();
+			data['article.type'] = $('input[name=type]:checked').val();
+			$.post('/admin/article/editTempArticle',data,function(data){
+				if(data.error){
+
+				}else{
+					message('已成功自动保存...');
+				}
+			});
+		},2 * 60 * 1000);
+	</script>
+	<#if article.type == 1>
+	<script type="text/javascript">
+		$('#type_1').click().attr('selected',false).click();
+	</script>
+	</#if>
+</@layout>

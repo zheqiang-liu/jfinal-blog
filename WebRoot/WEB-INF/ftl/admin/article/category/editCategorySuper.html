@@ -1,0 +1,38 @@
+<#include "../../dialog.html"/>
+<@dialog title="修改一级菜单:${categorySuper.name}">
+	<div id="form">
+		<div class="form_row">
+			<label class="span2">名称:</label>
+			<div><input id="category_name" class="form" type="text" value="${categorySuper.name}"></div>
+		</div>
+		<div class="form_row">
+			<label class="span2">顺序值:</label>
+			<div>
+				<select id="category_order">
+					<#list 0..count-1 as index>
+						<option value="${index}">${index}</option>
+					</#list>
+				</select>
+			</div>
+		</div>
+		<div class="form_row">
+			<button id="add" type="button">修改</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#category_order').val(${categorySuper.order});
+		$('#add').click(function(){
+			var data = {};
+			data['categorySuper.id'] = ${categorySuper.id}
+			data['categorySuper.name'] = $('#category_name').val();
+			data['categorySuper.order'] = $('#category_order').val();
+			$.post('/admin/article/category/editCategorySuperSubmit',data,function(data){
+				if(data.error){
+
+				}else{
+					location.href = "/admin/article/category.html";
+				}
+			});
+		});
+	</script>
+</@dialog>

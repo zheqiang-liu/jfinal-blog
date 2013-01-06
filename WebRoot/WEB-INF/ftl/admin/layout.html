@@ -1,0 +1,139 @@
+<#macro layout title="管理首页">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <title>${title}</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  		<meta http-equiv="Content-Language" content="zh-CN">
+	    <link href="/css/layout.css" rel="stylesheet" type="text/css">
+	    <script type="text/javascript" src="/js/jquery.js"></script>
+	    <script type="text/javascript" src="/js/layout.js"></script>
+	</head>
+	<body>
+	    <div id="screen">
+	        <div id="header">
+	            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	        		<tr>
+	        			<td width="160">
+	        				<a href="/admin" id="logo"></a>
+	        			</td>
+	        			<td valign="bottom">
+							分享学习、工作中的经验
+	        			</td>
+	        			<td>
+	        				
+	        			</td>
+	        		</tr>
+	        	</table>
+	        </div>
+	        <div id="nav">
+                 <div class="mainnav">
+                 	<a class="subnav" href="/admin/home.html">管理首页</a>
+                 </div>
+                 <div class="mainnav">
+                 	<a class="subnav" href="/admin/user/list.html">用户管理</a>
+                 	<ul class="dropdown">
+					 <li>
+					 	<a href="/admin/user/list.html">所有用户</a>
+					 </li>
+					 <li>
+					 	<a href="/admin/user/add.html">添加用户</a>
+					 </li>
+					 <div class="clear"></div>
+					</ul>
+                 </div>
+                 <div class="mainnav">
+                 	<a class="subnav" href="/admin/article">博文管理</a>
+                 	<ul class="dropdown">
+					 <li>
+					 	<a href="/admin/article">所有博客</a>
+					 </li>
+					 <li>
+					 	<a href="/admin/article/comments.html">所有评论</a>
+					 </li>
+					 <li>
+					 	<a href="/admin/article/add.html">添加博客</a>
+					 </li>
+					 <li>
+					 	<a href="/admin/article/category.html">所有类别</a>
+					 </li>
+					 <li>
+					 	<a href="/admin/article/project.html">所有工程</a>
+					 </li>
+					 <div class="clear"></div>
+					</ul>
+                 </div>
+                 <div class="mainnav">
+                 	<a class="subnav" href="/admin/picture.html">图片管理</a>
+                 	<ul class="dropdown">
+					 <li>
+					 	<a href="/admin/picture.html">图片目录</a>
+					 </li>
+					 <li>
+					 	<a href="/admin/picture/cleanTemp.html">清空临时目录</a>
+					 </li>
+					 <div class="clear"></div>
+					</ul>
+                 </div>
+                 <div class="mainnav">
+                 	<a class="subnav" href="javascript:;">网站管理</a>
+                 	<ul class="dropdown">
+					 <li>
+					 	<a
+					 	 href="/admin/message.html">查看留言</a>
+					 </li>
+					 <li>
+					 	<a href="/">网站首页</a>
+					 </li>
+					 <div class="clear"></div>
+					</ul>
+                 </div>
+	        </div>
+	        <div id="Content">
+	            <#nested>
+	        </div>
+	    </div>
+	    <div id="iframe"></div>
+	    <iframe name="iframe" height="0" width="0" style="display:none;"></iframe>
+	    <div id="loding"></div>
+	    <div id="message"></div>
+	    <script type="text/javascript" src="/js/admin/index.js"></script>
+	</body>
+</html>
+</#macro>
+
+
+
+<#macro pagination prefix>
+	<ul class="pagination">
+		<li>
+			<#if page.pageNumber == 1>
+			  <a href="javascript:;" class="first disable">&lt;
+			 </a>
+			<#else>
+			 <a href="${prefix}?p=${page.pageNumber-1}" class="first">&lt;
+			 </a>
+			</#if>
+		</li>
+		<#if page.totalPage == 0>
+			<#assign totalPage = 1>
+		<#else>
+			<#assign totalPage = page.totalPage>
+		</#if>
+		<#list 1..totalPage as pageNum>
+		<li>
+			<#if pageNum == page.pageNumber>
+				<a href="javascript:;" class="active">${pageNum}</a>
+			<#else>
+				<a href="${prefix}?p=${pageNum}">${pageNum}</a>
+			</#if>
+		</li>
+		</#list>
+		<li>
+			<#if page.pageNumber == totalPage>
+				<a href="javascript:;" class="disable">&gt;</a>
+			<#else>
+				<a href="${prefix}?p=${page.pageNumber+1}">&gt;</a>
+			</#if>
+		</li>
+	</ul>
+</#macro>

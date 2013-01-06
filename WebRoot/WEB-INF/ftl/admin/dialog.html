@@ -1,0 +1,36 @@
+<#macro dialog title="" >
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<div id="dialog">
+		<div id="dialog_bar">
+			<div id="dialog_title">${title}</div>
+		</div>
+		<div id="dialog_content">
+			<#nested>
+		</div>
+		<div id="dialog_footer">
+			<a href="javascript:;" id="dialog_close">关闭</a>
+			<div class="clear"></div>
+		</div>
+		<script type="text/javascript">
+			$('#dialog_close').click(function(){
+				parent.$('#iframe').empty().hide();
+			});
+		</script>
+	</div>
+	<script type="text/javascript">
+		parent.addToBody($('#dialog').clone());
+		$('#dialog').remove();
+		var iframe = parent.$('#iframe');
+		parent.$('#loding').hide();
+		var win = parent.$(parent.window);
+		var _top = (win.height() - iframe.height()) / 3;
+		var _left = (win.width() - iframe.width()) / 2;
+		if(_top <= 0){
+			_top = 150;
+		}
+		iframe.css({
+			'top' : _top,
+			'left' : _left
+		});
+	</script>
+</#macro>

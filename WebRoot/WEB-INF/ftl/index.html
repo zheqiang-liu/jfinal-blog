@@ -1,0 +1,125 @@
+<#include "layout.html"/>
+<@layout title="${title}">
+	<div class="fl" style="width:240px;">
+		<div class="index_left">
+			<div class="mod me_info">
+				<h3>个人资料</h3>
+				<div>
+					<div id="img" class="fl" title="刘哲强">
+					</div>
+					<div>
+						<h4>昵称:Mike Liu</h4>
+						<h4>兴趣:足球，编程</h4>
+						<h4>所在地:上海</h4>
+						<h4>工作:ABAP开发</h4>
+						<h4>QQ:871005789</h4>		
+					</div>
+					<div class="clear">
+						<strong>最新动态:</strong>
+						好好学习，天天向上~
+					</div>
+					
+				</div>
+			</div>
+			<div class="mod viewOrder">
+				<h3>阅读排行</h3>
+				<ul>
+					<#list hotsView as article>
+						<li>
+							<a class="a_title" title="${article.title}" href="/article/${article.id}.html">${article.title}</a>
+						</li>
+					</#list>
+					<li class="of_h"><a href="/article/hotsView.html" class="fr mr_5">更多</a></li>
+				</ul>
+			</div>
+			<div class="mod">
+				<h3>点评排行</h3>
+				<ul>
+					<#list hotsReply as article>
+						<li>
+							<a class="a_title" title="${article.title}" href="/article/${article.id}.html">${article.title}</a>
+						</li>
+					</#list>
+					<li class="of_h"><a href="/article/hotsReply.html" class="fr mr_5">更多</a></li>
+				</ul>
+			</div>
+			<div class="mod">
+				<h3>博文项目</h3>
+				<ul>
+					<#list projects as project>
+						<li>
+							<a class="a_title" title="${project.name}" href="/project/${project.id}.html">${project.name}</a>
+						</li>
+					</#list>
+					<#--
+					<li class="of_h"><a href="/article/hot.html" class="fr mr_5">更多</a></li>
+					-->
+				</ul>
+			</div>
+			<div class="mod">
+				<h3>友情链接</h3>
+				<ul>
+					<li>
+					   <a title="开源中国" href="http://www.oschina.net" target="_blank">开源中国</a>
+					</li>
+				</ul>
+			</div>
+			<div class="mod">
+				<h3>最新评论</h3>
+				<ul>
+					<#list comments as comment>
+						<li>
+							<span>用户:${comment.nick}</span>
+							内容:<a class="a_title" title="${comment.content}" href="/article/${comment.articleId}.html#comments">${comment.content}</a>
+						</li>
+					</#list>
+				</ul>
+			</div>
+			<div class="mod message" id="recently_message">
+				<h3>最新留言</h3>
+				<ul>
+					<#list messages as message>
+						<li>
+							<span>用户:${message.nick}</span>
+							<span>内容:${message.content}</span>
+						</li>
+					</#list>
+					<li class="of_h"><a href="javascript:;" id="a_giveMeMessage" class="fr mr_5">给我留言</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="fr" style="width:750px;">
+		<ul class="index_articles">
+			<li><h2 class="title">博文</h2></li>
+			<#list page_news.list as article>
+			<li class="index_article">
+				<div>
+					[${article._type}]
+					<a title="${article.title}" class="a_title" href="/article/${article.id}.html">${article.title}</a>
+					<span class="createDateTime">
+						(发表于:${article._createDateTime})
+					</span>
+				</div>
+				<div class="tags">
+					<strong>标签:</strong>
+					<#list article._tags as tag>
+						<a title="${tag}" href="/tag/${tag}.html" class="tag">
+							${tag}
+						</a>
+					</#list>
+				</div>
+				<div class="simpleContent">
+					${article.brief}
+				</div>
+				<div class="viewCount">
+					阅读:(${article.viewCount}) | 评论:(${article.replyCount})
+					<a class="view" href="/article/${article.id}.html">查看全文&gt;&gt;</a>
+				</div>
+			</li>
+			</#list>
+		</ul>
+		<@pagination pageNum=page_news.pageNumber totalPage=page_news.totalPage/>
+	</div>
+	<div class="clear"></div>
+</@layout>
