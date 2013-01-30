@@ -4,11 +4,11 @@
 	subnavs.mouseover(function(){
 		dropdowns.hide();
 		subnavs.removeClass('active');
-		$(this).addClass('active').next().stop(true).slideDown(400);
+		$(this).addClass('active').next().stop(true).slideDown(300);
 	});
 	$('#nav').add(dropdowns).mouseleave(function(){
 		subnavs.removeClass('active');
-		dropdowns.stop(true).slideUp(300);
+		dropdowns.stop(true).slideUp(200);
 	});
 });
 

@@ -13,6 +13,7 @@
 	width: @width px;
 	height: @height px;
 }
+@bg_color:#FFF;
 /*start全局使用*/
 body,p,ul,li,input,textarea,ol,h1,h2,h3,h4,h5{
 	.m_p_0;
@@ -22,10 +23,10 @@ body, button, input, textarea, .win-textarea, select, option {
 }
 body {
     color: #333333;
-    font-family: "微软雅黑",Verdana,sans-serif,"宋体";
+    font-family: Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
     font-size: 13px;
     line-height: 20px;
-    background: #F9F9F9;
+    background: #EEE;
     text-align: center;
 }
 input,textarea{
@@ -36,7 +37,7 @@ ul{
 	list-style-type: none;
 }
 a{
-	color: #333;
+	color: #2970A6;
 	text-decoration: none;
 }
 a:hover{
@@ -132,9 +133,16 @@ img.lazy{
 	width: 1000px;
 	margin: 0 auto;
 	text-align: left;
+	background-color: #FFF;
 }
 #header{
-	height: 42px;
+	height: 80px;
+	background: #333;
+	color: #777;
+}
+#content{
+	padding-top: 18px;
+	background:#FFF url(/img/s/content_bg_img.png) left top repeat-x;
 }
 #footer{
 	margin: 20px 0 40px 0;
@@ -154,34 +162,40 @@ img.lazy{
 	position: fixed;
 	width: 50px;
 	height: 50px;
-	border: 1px solid #529A4A;
+	border: 1px solid #CCC;
 	top: 70%;
 	right: 20px;
-	background-color: #FAFAFA;
-	background-image: url(/img/s/top.png);
+	background-color: @bg_color;
+	background-image: url(/img/s/top.jpg);
 	background-position: left top;
 	cursor: pointer;
 	display: none;
 }
 #top:hover{
 	background-position: left -50px;
-	border-color: #2A4E26;
+	border-color: #AAA;
 }
 /*end 大总局样式*/
 /*start header*/
 #logo{
+	margin: 0 0 0 10px;
+	line-height: 80px;
+	height: 80px;
+	font-size: 24px;
+	font-weight: bold;
 	display: block;
-	height: 40px;
-	background: #F9F9F9 url(/img/s/logo.png) no-repeat left top;
+	width: 200px;
+}
+#logo h3{
+	color: #777;
 }
 /*end header*/
 /*start 菜单样式*/
-@nav_bg_color:#2A4E26;
-@nav_bg_color_active:#529A4A;
+@nav_bg_color:#333;
+@nav_bg_color_active:#555;
 #nav{
 	height: 28px;
-	margin-bottom: 5px;
-	background: @nav_bg_color;
+	background: @nav_bg_color url(/img/s/nav_bg_img.png) repeat;
 	padding: 0 10px;
 	.mainnav{
 		.fl;
@@ -232,22 +246,22 @@ img.lazy{
 		padding: 0px 5px;
 		margin: 0px 5px;
 		color: #3E6D8E;
-		background-color: #E0EAF1;
+		background-color:#FFFCEF;
 	}
 	.tag:hover{
-		background-color:#3E6D8E;
+		background-color:#AAADAA;
 		color: #FFF; 
 	}
 }
 /*end tag 的样式*/
 /*start 首页样式*/
-@mod_title_bg_color:#B3CADE;
-@mod_title_f_color:#222;
+@mod_title_bg_color:#444;
+@mod_title_f_color:#444;
 .index_articles{
-	border: 1px solid @mod_title_bg_color;
+	/*border: 1px solid @mod_title_bg_color;*/
 	margin: 0 0 10px 0;
 	.index_article{
-		border-bottom: 1px dotted #3F7E46;
+		border-bottom: 1px dotted #AAA;
 		margin:10px 5px;
 		padding-bottom: 10px;
 	}
@@ -256,9 +270,10 @@ img.lazy{
 	}
 	.a_title{
 		font-size: 16px;
+		font-weight: bold;
 		line-height: 24px;
 		margin: 0 5px;
-		color: #DB7506;
+		color: #4C4C4C;
 	}
 	.a_title:hover{
 		text-decoration: underline;
@@ -281,33 +296,49 @@ img.lazy{
 		font-size: 16px;
 		line-height: 22px;
 		height: 22px;
-		background: @mod_title_bg_color;
+		/*background: @mod_title_bg_color;*/
 		color: @mod_title_f_color;
 		padding: 0 0 0 3px;
 	}
 }
+.widget{
+	border-right: 1px solid #AAA;
+	background-color:#F7F7F7;
+}
 .index_left{
+	padding-left: 5px;
 	.mod{
-		border: 1px solid @mod_title_bg_color;
-		margin: 0 0 15px 0;
+		/*border: 1px solid @mod_title_bg_color;*/
 		/*fix ie 6 bug*/
 		width:238px;
 		overflow: hidden;
 		/*fix ie 6 bug*/
 	}
+	.mod_divider{
+		background: #FFF url(/img/s/divider.png) no-repeat;
+		height: 2px;
+		margin: 7px 0;
+	}
 	h3{
-		font-size: 16px;
+		font-size: 14px;
 		line-height: 22px;
 		height: 22px;
-		background: @mod_title_bg_color;
+		/*background: @mod_title_bg_color;*/
 		color: @mod_title_f_color;
 		padding: 0 0 0 3px;
 	}
+	ul{
+		margin-left: 4px;
+	}
 	li{
 		font-size: 12px;
-		padding: 1px 5px;
+		padding: 1px 0 1px 20px;
+		background:#F7F7F7 url(/img/s/icon.png) no-repeat left center;
 		height: 20px;
 		overflow: hidden;
+	}
+	li:hover{
+		background-image: url(/img/s/icon_active.png);
 	}
 	.me_info{
 		h4{
@@ -373,12 +404,11 @@ img.lazy{
 /*end 分布样式*/
 /*start 普通article中的样式*/
 #articles{
-	
+	margin: 0 10px;
 }
 .article{
 	margin:0 0 15px 0;
 	padding: 0 0 14px 0;
-	border-bottom: 1px solid @nav_bg_color;
 	color: #222;
 	.left{
 		float: left;
@@ -438,6 +468,7 @@ img.lazy{
 /*end 普通article中的样式*/
 /*start article detail样式*/
 .detail{
+	margin: 0 10px;
 	.title{
 		line-height: 30px;
 		height: 30px;

@@ -67,6 +67,8 @@ public class ArticleController extends Controller {
 		Comment comment = getModel(Comment.class);
 		comment.set("dateTime", new Date());
 		comment.save();
+		Article article = Article.dao.findById(comment.getInt(Comment.ARTICLE_ID));
+		article.set("replyCount", article.getInt("replyCount") + 1).update();
 		CacheKit.remove("article", "id_" + comment.getInt(Comment.ARTICLE_ID));
 		CacheKit.remove("article", "recently_comments");
 		Email _email = new Email();
