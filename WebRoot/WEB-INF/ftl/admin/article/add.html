@@ -20,8 +20,12 @@
 			<label class="span2">类别</label>
 			<div>
 				<select class="span6 form" id="article_category_id">
-				<#list categorySubList as categorySub>
-					<option value="${categorySub.id}">${categorySub.name}</option>
+				<#list categorySuperList as categorySuper>
+					<optgroup label="${categorySuper.name}">
+					<#list categorySuper.categorySubList as categorySub>
+						<option value="${categorySub.id}">${categorySub.name}</option>
+					</#list>
+					</optgroup>
 				</#list>
 				</select>
 			</div>

@@ -36,7 +36,7 @@ CREATE TABLE `article` (
   `projectId` int(11) DEFAULT NULL,
   `finish` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` VALUES (2,'我的ABAP命名规范','2012-12-11 17:33:44',0,'',192,0,'<h3>\n	<strong><span style=\"background-color:#FFFFFF;color:#FF9900;line-height:2;\"><span style=\"line-height:1.5;\">目录</span><span></span></span></strong> \n</h3>\n<h4>\n	<ul>\n		<li>\n			<span style=\"color:#337FE5;\"><span style=\"color:#337FE5;\"><a href=\"#g_type\">全局类型</a></span></span> \n		</li>\n		<li>\n			<span style=\"color:#337FE5;\"><a href=\"#g_cns\">全局常量</a></span> \n		</li>\n		<li>\n			<span style=\"color:#337FE5;\"><a href=\"#g_var\">全局变量</a></span> \n		</li>\n		<li>\n			<span style=\"color:#337FE5;\"><span style=\"color:#337FE5;\"><a href=\"#l_var\">局部变量</a></span> </span> \n		</li>\n	</ul>\n</h4>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"g_type\"></a>全局类型</span> \n</h3>\n<ol>\n	<li>\n		<span><span>表类型</span><br />\n<pre class=\"prettyprint brush:abap\">TYP_TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span><span>结构体类型</span><br />\n<pre class=\"prettyprint brush:abap\">TYP_*</pre>\n</span> \n	</li>\n</ol>\n<p>\n	<span></span> \n</p>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"g_cns\"></a>全局常量</span> \n</h3>\n<ol>\n	<li>\n		<span>表类型常量<br />\n<pre class=\"prettyprint brush:abap\">CNS_TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span>结构体类型常量<br />\n<pre class=\"prettyprint brush:abap\">CNS_*</pre>\n</span> \n	</li>\n</ol>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"g_var\"></a>全局变量</span> \n</h3>\n<ol>\n	<li>\n		<span>表类型变量<br />\n<pre class=\"prettyprint brush:abap\">TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span>结构体类型变量<br />\n<span></span> \n<pre class=\"prettyprint brush:abap\">W_*</pre>\n</span> \n	</li>\n</ol>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"l_var\"></a>局部变量</span> \n</h3>\n<ol>\n	<li>\n		<span>表类型局部变量<br />\n<pre class=\"prettyprint brush:abap\">L_TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span>结构体类型变量<br />\n<pre class=\"prettyprint brush:abap\">L_W_*</pre>\n</span> \n	</li>\n</ol>',1,'sap,abap,types',2,1),(4,'如何让选择屏幕的radio放在字段的后面','2012-12-22 15:27:51',0,'',84,0,'<ol>\n	<li>\n		<strong><span style=\"font-size:14px;line-height:2;color:#FF9900;\">sap中选择屏幕中的radiobutton默认放在字段名的前面<br />\n</span></strong>如：<br />\n<pre class=\"prettyprint brush:abap\">REPORT  Z_MIKE_REPORT_TEST.\n\nPARAMETER p0 radiobutton group out.\nPARAMETER p1 radiobutton group out.</pre>\n显示的结果为:<br />\n<img src=\"/img/u/2012/12/13/ZFGD.jpg\" width=\"324\" height=\"90\" alt=\"\" /><br />\n<br />\n	</li>\n	<li>\n		<strong><span style=\"font-size:14px;line-height:2;color:#FF9900;\">下面的代码可以使radiobutton放在字段名的后面</span></strong><br />\n<pre class=\"prettyprint brush:abap\">REPORT  Z_MIKE_REPORT_TEST.\n\nSELECTION-SCREEN BEGIN OF LINE.\n  SELECTION-SCREEN COMMENT 1(10) FOR FIELD p0.\n  PARAMETER p0 radiobutton group out.\nSELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN BEGIN OF LINE.\n  SELECTION-SCREEN COMMENT 1(10) FOR FIELD p1.\n  PARAMETER p1 radiobutton group out.\nSELECTION-SCREEN END OF LINE.</pre>\n<span>显示的结果为:<br />\n</span><img src=\"/img/u/2012/12/13/XLG6.jpg\" width=\"256\" height=\"98\" alt=\"\" /><br />\n	</li>\n</ol>',1,'abap,radiobutton,radio,parameter',3,1),(15,'我的小米','2012-12-22 15:24:54',0,'',78,0,'<p>\n	分享一下我的小米2\n</p>\n<p>\n	<img src=\"/img/u/2012/12/16/BAWV.JPG\" width=\"800\" height=\"598\" alt=\"\" /> \n</p>\n<p>\n	<br />\n</p>\n<p>\n	<img src=\"/img/u/2012/12/16/CMJA.JPG\" width=\"800\" height=\"598\" alt=\"\" /> \n</p>\n<p>\n	<br />\n</p>\n<p>\n	<img src=\"/img/u/2012/12/16/8U3Q.JPG\" width=\"800\" height=\"598\" alt=\"\" /> \n</p>\n<p>\n	<br />\n</p>\n<p>\n	<br />\n</p>',10,'xiaomi,picture',1,1),(38,'ALV 詳解','2013-01-04 14:05:30',0,NULL,8,0,'文件地址:&nbsp;<a href=\"http://pan.baidu.com/share/link?shareid=182774&amp;uk=722834907\" target=\"_blank\">ALV 詳解</a>',15,'alv,abap',9,1);
+INSERT INTO `article` VALUES (2,'我的ABAP命名规范','2012-12-11 17:33:44',0,'',229,0,'<h3>\n	<strong><span style=\"background-color:#FFFFFF;color:#FF9900;line-height:2;\"><span style=\"line-height:1.5;\">目录</span><span></span></span></strong> \n</h3>\n<h4>\n	<ul>\n		<li>\n			<span style=\"color:#337FE5;\"><span style=\"color:#337FE5;\"><a href=\"#g_type\">全局类型</a></span></span> \n		</li>\n		<li>\n			<span style=\"color:#337FE5;\"><a href=\"#g_cns\">全局常量</a></span> \n		</li>\n		<li>\n			<span style=\"color:#337FE5;\"><a href=\"#g_var\">全局变量</a></span> \n		</li>\n		<li>\n			<span style=\"color:#337FE5;\"><span style=\"color:#337FE5;\"><a href=\"#l_var\">局部变量</a></span> </span> \n		</li>\n	</ul>\n</h4>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"g_type\"></a>全局类型</span> \n</h3>\n<ol>\n	<li>\n		<span><span>表类型</span><br />\n<pre class=\"prettyprint brush:abap\">TYP_TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span><span>结构体类型</span><br />\n<pre class=\"prettyprint brush:abap\">TYP_*</pre>\n</span> \n	</li>\n</ol>\n<p>\n	<span></span> \n</p>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"g_cns\"></a>全局常量</span> \n</h3>\n<ol>\n	<li>\n		<span>表类型常量<br />\n<pre class=\"prettyprint brush:abap\">CNS_TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span>结构体类型常量<br />\n<pre class=\"prettyprint brush:abap\">CNS_*</pre>\n</span> \n	</li>\n</ol>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"g_var\"></a>全局变量</span> \n</h3>\n<ol>\n	<li>\n		<span>表类型变量<br />\n<pre class=\"prettyprint brush:abap\">TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span>结构体类型变量<br />\n<span></span> \n<pre class=\"prettyprint brush:abap\">W_*</pre>\n</span> \n	</li>\n</ol>\n<h3>\n	<span style=\"color:#FF9900;\"><a name=\"l_var\"></a>局部变量</span> \n</h3>\n<ol>\n	<li>\n		<span>表类型局部变量<br />\n<pre class=\"prettyprint brush:abap\">L_TAB_*</pre>\n</span> \n	</li>\n	<li>\n		<span>结构体类型变量<br />\n<pre class=\"prettyprint brush:abap\">L_W_*</pre>\n</span> \n	</li>\n</ol>',1,'sap,abap,types',2,1),(45,'SAP IMG 解释','2013-01-28 17:36:50',1,'http://www.cnblogs.com/mybi/archive/2010/12/21/1912852.html',10,0,'<p>\n	<span style=\"line-height:2;\"><strong>IMG</strong> - Implementation Guide(IMG)是SAP系统的配置工具，它可按你公司的要求配置SAP系统以适合你公司的要求。</span>\n</p>\n<p>\n	<span style=\"line-height:2;\">有三种类型的IMG，分别是:</span>\n</p>\n<p>\n	<span style=\"line-height:2;\">1. SAP Reference IMG，可在这里配置SAP系统的所有功能。</span>\n</p>\n<p>\n	<span style=\"line-height:2;\">2. Project IMGs，它基于Rrference IMG，可为某个项目进行单独配置，比如我们可建立一个FI的Project IMGs，方便配置。</span>\n</p>\n<p>\n	<span style=\"line-height:2;\">3. Project view IMGs，在Project IMGs里的Project views里设置，在Project IMGs里再建立一个视图，把一些配置选项添加到该视图里。通过这样一层层的分工，就可把Reference IMG里的配置分配给不同的人员进行维护。</span>\n</p>\n<span style=\"line-height:2;\"> 我们可为不同版本的SAP系统建立IMG，如4.0x，4.5x。这种IMG叫做版本相关IMG。通过“help”--“Release notes”菜单可显示各个SAP发布版的区别。\n我们可用事务码“spro”来进入SAP Reference IMG。使用“spro_admin”进入project IMGs。</span>',1,'sap,img',1,1);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `comment` (
   `nick` varchar(45) NOT NULL,
   `pId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,6 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (38,38,'fdsa@qq.com','fdsagasdf','2013-01-05 20:35:15','fdsaf',0);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +142,7 @@ CREATE TABLE `message` (
   `dateTime` datetime NOT NULL,
   `nick` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +151,6 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (4,'fdsfsaf@qq.com','cfsadgsafdsafas','2012-12-19 10:50:05','cloud');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +200,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'mike',sha1('root'));
+INSERT INTO `user` VALUES (1,'root',sha1('root'));
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -215,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-05 21:10:52
+-- Dump completed on 2013-01-31  8:12:27

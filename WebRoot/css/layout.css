@@ -8,12 +8,12 @@ a:hover{color:red;}
 .w_170{width:170px;}
 .fl{float:left;}
 .fr{float:right;}
-.span1{width:40 px;height:22 px;}
-.span2{width:80 px;height:22 px;}
-.span3{width:120 px;height:22 px;}
-.span4{width:160 px;height:22 px;}
-.span5{width:200 px;height:22 px;}
-.span6{width:240 px;height:22 px;}
+.span1{margin:0 1px;width:40px;height:22px;overflow:hidden;}
+.span2{margin:0 1px;width:80px;height:22px;overflow:hidden;}
+.span3{margin:0 1px;width:120px;height:22px;overflow:hidden;}
+.span4{margin:0 1px;width:160px;height:22px;overflow:hidden;}
+.span5{margin:0 1px;width:200px;height:22px;overflow:hidden;}
+.span6{margin:0 1px;width:240px;height:22px;overflow:hidden;}
 .clear{clear:both;}
 .divider{background-color:#E5E5E5;border-bottom:1px solid #FFFFFF;height:1px;margin:9px 1px;overflow:hidden;}
 .clearCSS{width:auto;height:auto;}

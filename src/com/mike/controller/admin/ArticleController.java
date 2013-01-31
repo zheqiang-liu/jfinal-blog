@@ -9,7 +9,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.ehcache.CacheKit;
 import com.mike.interceptor.SessionInterceptor;
 import com.mike.pojo.Article;
-import com.mike.pojo.CategorySub;
+import com.mike.pojo.CategorySuper;
 import com.mike.pojo.Comment;
 import com.mike.pojo.Project;
 
@@ -32,10 +32,10 @@ public class ArticleController extends Controller {
 	public void edit(){
 		article = Article.dao.findById(getPara(0));
 		setAttr("article",article);
-		List<CategorySub> categorySubList = CategorySub.dao.find("select * from category_sub");
+		List<CategorySuper> categorySuperList = CategorySuper.dao.find("select * from category_super");
 		List<Project> projectList = Project.dao.find("select * from project where finish = 0");
 		setAttr("projectList", projectList);
-		setAttr("categorySubList", categorySubList);
+		setAttr("categorySuperList", categorySuperList);
 		render("edit.html");
 	}
 	public void comments(){
@@ -69,11 +69,11 @@ public class ArticleController extends Controller {
 		renderJson();
 	}
 	public void add() {
-		List<CategorySub> categorySubList = CategorySub.dao
-				.find("select * from category_sub");
+		List<CategorySuper> categorySuperList = CategorySuper.dao
+				.find("select * from category_super");
 		List<Project> projectList = Project.dao.find("select * from project where finish = 0");
 		setAttr("projectList", projectList);
-		setAttr("categorySubList", categorySubList);
+		setAttr("categorySuperList", categorySuperList);
 		render("add.html");
 	}
 

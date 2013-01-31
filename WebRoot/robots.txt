@@ -5,3 +5,4 @@ Disallow: /categorySub
 Disallow: /tag
 Disallow: /img
 Disallow: /file
+Disallow: /project
