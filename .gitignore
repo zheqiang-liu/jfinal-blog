@@ -1,4 +1,8 @@
-file/
-img/u/
-img/temp/
-classes/
+/db_backup/
+/doc/
+/psd/
+/WebRoot/file/
+/WebRoot/img/u/
+/WebRoot/img/temp/
+/WebRoot/WEB-INF/classes/
+/WebRoot/WEB-INF/conf.properties
