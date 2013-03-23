@@ -32,7 +32,7 @@ $(window).load(function(){
 	$('#a_giveMeMessage').click(function(){
 		if(!$('#recently_message').find('#giveMeMessage').size()){
 			$.ajax({
-				url:'/addMessage.html',
+				url: path + '/addMessage.html',
 				type:'get',
 				dataType:'html',
 				success:function(data){

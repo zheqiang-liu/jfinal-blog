@@ -39,10 +39,7 @@ public class IndexController extends Controller {
 		
 		render("index.html");
 	}
-
-	public void me() {
-		render("me.html");
-	}
+	
 	public void addMessage(){
 		render("addMessage.html");
 	}

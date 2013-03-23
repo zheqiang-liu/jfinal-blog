@@ -1,18 +1,8 @@
-.m_p_0(){
-	margin: 0px;
-	padding: 0px;
-}
-.fl(){
-	float: left;
-}
-/*}*/
-.fr(){
-	float: right;
-}
 @bg_color:#FFF;
 /*start全局使用*/
 body,p,ul,li,input,textarea,ol,h1,h2,h3,h4,h5{
-	.m_p_0;
+	margin: 0px;
+	padding: 0px;
 }
 body, button, input, textarea, .win-textarea, select, option {
     letter-spacing: 0.02em;
@@ -118,6 +108,12 @@ img.lazy{
 	border: 1px solid #529A4A;
 	padding: 2px;
 }
+.row{
+	overflow: hidden;
+}
+.row .col{
+	float: left;
+}
 /*end全局使用*/
 /*start admin全局使用*/
 .table_row{
@@ -212,7 +208,7 @@ img.lazy{
 	background: @nav_bg_color url(/img/s/nav_bg_img.png) repeat;
 	padding: 0 10px;
 	.mainnav{
-		.fl;
+		float: left;
 	}
 	a{
 		display: block;
@@ -319,6 +315,11 @@ img.lazy{
 	border-right: 1px solid #AAA;
 	background-color:#F7F7F7;
 }
+.mod_divider{
+	background: #FFF url(/img/s/divider.png) no-repeat;
+	height: 2px;
+	margin: 7px 0;
+}
 .index_left{
 	padding-left: 5px;
 	.mod{
@@ -327,11 +328,6 @@ img.lazy{
 		width:238px;
 		overflow: hidden;
 		/*fix ie 6 bug*/
-	}
-	.mod_divider{
-		background: #FFF url(/img/s/divider.png) no-repeat;
-		height: 2px;
-		margin: 7px 0;
 	}
 	h3{
 		font-size: 14px;

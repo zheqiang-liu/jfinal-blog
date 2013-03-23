@@ -1,17 +1,17 @@
 <#include "../layout.html"/>
 <@layout title="${article.title} -- ${title}" keywords="${article.tags}" desc="${article._desc}">
-<link type="text/css" rel="stylesheet" href="/syntaxhighlighter/styles/shCore.css"/>
-<link type="text/css" rel="stylesheet" href="/syntaxhighlighter/styles/shThemeDefault.css"/>
+<link type="text/css" rel="stylesheet" href="${path}/syntaxhighlighter/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="${path}/syntaxhighlighter/styles/shThemeDefault.css"/>
 <script type="text/javascript" src="/syntaxhighlighter/scripts/shCore.js"></script>
 <div class="detail">
 	<div class="p_n">
 		<#if previous??>
-			<a title="${previous.title}" href="/article/${previous.id}.html" class="fl">&lt;&lt;${previous.title}</a>
+			<a title="${previous.title}" href="${path}/article/${previous.id}.html" class="fl">&lt;&lt;${previous.title}</a>
 		<#else>
 			<a href="javascript:;" class="fl">&lt;&lt;没有上一篇博客</a>
 		</#if>
 		<#if next??>
-			<a title="${next.title}" href="/article/${next.id}.html" class="fr">${next.title}&gt;&gt;</a>
+			<a title="${next.title}" href="${path}/article/${next.id}.html" class="fr">${next.title}&gt;&gt;</a>
 		<#else>
 			<a href="javascript:;" class="fr">没有下一篇博客&gt;&gt;</a>
 		</#if>
@@ -26,16 +26,16 @@
 	<div class="category_project">
 		<span class="category">
 			类别: 
-			<a href="/categorySuper/${article.categorySub.pcategory.id}.html">
+			<a href="${path}/categorySuper/${article.categorySub.pcategory.id}.html">
 				${article.categorySub.pcategory.name}
 			</a>
 			/
-			<a href="/categorySub/${article.categorySub.id}.html">
+			<a href="${path}/categorySub/${article.categorySub.id}.html">
 				${article.categorySub.name}
 			</a>
 		</span>
 		<span class="project">
-			项目: <a href="/project/${article.project.id}.html">${article.project.name}</a>
+			项目: <a href="${path}/project/${article.project.id}.html">${article.project.name}</a>
 		</span>
 	</div>
 	<div class="content">
@@ -53,19 +53,19 @@
 	<div class="tags">
 		<strong>关键字:</strong>
 		<#list article._tags as tag>
-		<a title="${tag}" href="/tag/${tag}.html" class="tag">
+		<a title="${tag}" href="${path}/tag/${tag}.html" class="tag">
 			${tag}
 		</a>
 		</#list>
 	</div>
 	<div class="p_n">
 		<#if previous??>
-			<a title="${previous.title}" href="/article/${previous.id}.html" class="fl">&lt;&lt;${previous.title}</a>
+			<a title="${previous.title}" href="${path}/article/${previous.id}.html" class="fl">&lt;&lt;${previous.title}</a>
 		<#else>
 			<a href="javascript:;" class="fl">&lt;&lt;没有上一篇博客</a>
 		</#if>
 		<#if next??>
-			<a title="${next.title}" href="/article/${next.id}.html" class="fr">${next.title}&gt;&gt;</a>
+			<a title="${next.title}" href="${path}/article/${next.id}.html" class="fr">${next.title}&gt;&gt;</a>
 		<#else>
 			<a href="javascript:;" class="fr">没有下一篇博客&gt;&gt;</a>
 		</#if>
@@ -75,7 +75,7 @@
 		<h3>相关博文:</h3>
 		<ul>
 			<#list article.relates as article>
-				<li><a href="/article/${article.id}.html">${article.title}</a></li>
+				<li><a href="${path}/article/${article.id}.html">${article.title}</a></li>
 			</#list>
 		</ul>
 	</div>
@@ -127,6 +127,6 @@
 		var comment_size = ${article.comments?size};
 		var article_id  = ${article.id};
 	</script>
-	<script type="text/javascript" src="/js/article/detail.js"></script>
+	<script type="text/javascript" src="${path}/js/article/detail.js"></script>
 </div>
 </@layout>

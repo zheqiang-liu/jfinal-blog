@@ -1,7 +1,7 @@
 //from page variant
 // article_id comment_size
 
-SyntaxHighlighter.config.clipboardSwf = '/syntaxhighlighter/scripts/clipboard.swf';
+SyntaxHighlighter.config.clipboardSwf = path + '/syntaxhighlighter/scripts/clipboard.swf';
 SyntaxHighlighter.all();
 var pId;
 $(window).load(function(){
@@ -12,7 +12,7 @@ $(window).load(function(){
 		$imgs.each(function(i,img){
 			var $img = $(img);
 			var top = $img.offset().top;
-			var index = parseInt(top / 800);
+			var index = parseInt(top / 1200);
 			if(imgs[index]){
 				imgs[index].push($img);
 			}else{
@@ -22,7 +22,7 @@ $(window).load(function(){
 		});
 		function lazy(){
 			var top = $(document.body).scrollTop();
-			var index = parseInt(top / 800) + 1;
+			var index = parseInt(top / 1200) + 1;
 			if(imgs[index]){
 				$.each(imgs[index],function(i,img){
 					if(/img\/s/g.test(img.attr('src'))){
@@ -30,7 +30,7 @@ $(window).load(function(){
 					}
 				});
 			}
-			index = parseInt(top / 800);
+			index = parseInt(top / 1200);
 			if(imgs[index]){
 				$.each(imgs[index],function(i,img){
 					if(/img\/s/g.test(img.attr('src'))){
@@ -72,7 +72,7 @@ $(window).load(function(){
 			$('#comment_content').focus();
 			return false;
 		}
-		$.post('/article/addComment',{
+		$.post(path + '/article/addComment',{
 			'comment.email':email,
 			'comment.content':content,
 			'comment.articleId' : article_id,

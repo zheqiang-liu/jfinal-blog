@@ -6,12 +6,15 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   		<meta http-equiv="Content-Language" content="zh-CN">
   		<title>${title}</title>
-  		<link rel="shortcut icon" type="image/x-icon" href="/img/s/favicon.ico">
+  		<link rel="shortcut icon" type="image/x-icon" href="${path}/img/s/favicon.ico">
   		<meta name="Keywords" content="${keywords}">
   		<meta name="Description" content="${desc}">
-	    <link href="/css/layout.css" rel="stylesheet" type="text/css">
-	    <script type="text/javascript" src="/js/jquery.js"></script>
-	    <script type="text/javascript" src="/js/layout.js"></script>
+	    <link href="${path}/css/layout.css" rel="stylesheet" type="text/css">
+	    <script type="text/javascript">
+	    	var path = '${path}';
+	    </script>
+	    <script type="text/javascript" src="${path}/js/jquery.js"></script>
+	    <script type="text/javascript" src="${path}/js/layout.js"></script>
 	</head>
 	<body>
 	    <div id="screen">
@@ -22,7 +25,7 @@
 
 	        			</td>
 	        			<td width="180">
-	        				<a href="/" id="logo">
+	        				<a href="${path}/" id="logo">
 	        					<h3>ABAP blog
 	        					</h3>
 	        				</a>
@@ -35,18 +38,18 @@
 	        </div>
 	        <div id="nav">
 	        	<div class="mainnav">
-                 	<a class="subnav" href="/">博客 |</a>
+                 	<a class="subnav" href="${path}/">博客 |</a>
 				</div>
 				<div class="mainnav">
-					<a class="subnav" href="/">首页</a>
+					<a class="subnav" href="${path}/">首页</a>
 				</div>
 				<#list categorySuperList as categorySuper>
 				<div class="mainnav">
-                 	<a class="subnav" href="/categorySuper/${categorySuper.id}.html">${categorySuper.name}</a>
+                 	<a class="subnav" href="${path}/categorySuper/${categorySuper.id}.html">${categorySuper.name}</a>
                  	<ul class="dropdown">
 	                 	 <#list categorySuper.categorySubList as categorySub>
 						 <li>
-						 	<a href="/categorySub/${categorySub.id}.html">${categorySub.name}</a>
+						 	<a href="${path}/categorySub/${categorySub.id}.html">${categorySub.name}</a>
 						 </li>
 						 </#list>
 						 <div class="clear"></div>
@@ -54,7 +57,16 @@
                 </div>
                 </#list>
                 <div class="mainnav">
-                 	<a class="subnav" href="/me.html">@ 我 @</a>
+                 	<a class="subnav" href="${path}/api">API</a>
+                 	<ul class="dropdown">
+						 <li>
+						 	<a href="${path}/api/sap_class">SAP CLASS</a>
+						 </li>
+						 <div class="clear"></div>
+					</ul>
+                </div>
+                <div class="mainnav">
+                 	<a class="subnav" href="${path}/me.html">@ 我 @</a>
 				</div>
 	        </div>
 	        <div id="content">
@@ -62,7 +74,7 @@
 	        </div>
 	        <div id="footer">
 	        	<hr/>
-	        	Author:Mike Liu <a href="/admin" target="_blank">后台管理</a>
+	        	Author:Mike Liu <a href="${path}/admin" target="_blank">后台管理</a>
 	        	<div>
 	        		<script src="http://s19.cnzz.com/stat.php?id=4876176&web_id=4876176&show=pic" language="JavaScript">
 	        		</script>

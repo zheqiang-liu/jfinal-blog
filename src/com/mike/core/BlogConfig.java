@@ -17,9 +17,11 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.util.StringKit;
+import com.mike.controller.ApiController;
 import com.mike.controller.CategorySubController;
 import com.mike.controller.CategorySuperController;
 import com.mike.controller.IndexController;
+import com.mike.controller.MeController;
 import com.mike.controller.TagController;
 import com.mike.controller.admin.ArticleController;
 import com.mike.controller.admin.CategoryController;
@@ -58,22 +60,22 @@ public class BlogConfig extends JFinalConfig {
 
 	@Override
 	public void configRoute(Routes me) {
+		
 		me.add("/", IndexController.class);
-		me.add("/article", com.mike.controller.ArticleController.class,
-				"article");
+		me.add("/api", ApiController.class,"api");
+		me.add("/article", com.mike.controller.ArticleController.class,"article");
 		me.add("/categorySuper", CategorySuperController.class, "article");
 		me.add("/categorySub", CategorySubController.class, "article");
-		me.add("/project", com.mike.controller.ProjectController.class,
-				"article");
+		me.add("/project", com.mike.controller.ProjectController.class,"article");
 		me.add("/tag", TagController.class, "article");
-		me.add("/admin", com.mike.controller.admin.IndexController.class,
-				"admin");
+		me.add("/me", MeController.class, "me");
+		//backend
+		me.add("/admin", com.mike.controller.admin.IndexController.class,"admin");
+		me.add("/admin/api", com.mike.controller.admin.ApiController.class,"admin/api");
 		me.add("/admin/user", UserController.class, "admin/user");
 		me.add("/admin/article", ArticleController.class, "admin/article");
-		me.add("/admin/article/category", CategoryController.class,
-				"admin/article/category");
-		me.add("/admin/article/project", ProjectController.class,
-				"admin/article/project");
+		me.add("/admin/article/category", CategoryController.class,"admin/article/category");
+		me.add("/admin/article/project", ProjectController.class,"admin/article/project");
 		me.add("/admin/picture", PictureController.class, "admin/picture");
 		me.add("/admin/file", FileController.class);
 	}

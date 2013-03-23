@@ -5,7 +5,7 @@ $('.del').click(function(){
 	return false;
 });
 function article_finish(id,_this){
-	$.post('/admin/article/finish',{'id':id},function(data){
+	$.post(path + '/admin/article/finish',{'id':id},function(data){
 		if(data.error){
 
 		}else{
@@ -15,7 +15,7 @@ function article_finish(id,_this){
 	});
 }
 function article_not_finish(id,_this){
-	$.post('/admin/article/notFinish',{'id':id},function(data){
+	$.post(path + '/admin/article/notFinish',{'id':id},function(data){
 		if(data.error){
 
 		}else{

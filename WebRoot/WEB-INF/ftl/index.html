@@ -28,11 +28,11 @@
 				<ul>
 					<#list hotsView as article>
 						<li>
-							<a class="a_title" title="${article.title}" href="/article/${article.id}.html">${article.title}</a>
+							<a class="a_title" title="${article.title}" href="${path}/article/${article.id}.html">${article.title}</a>
 						</li>
 					</#list>
 				</ul>
-				<div class="of_h"><a href="/article/hotsView.html" class="fr mr_5">更多</a></div>
+				<div class="of_h"><a href="${path}/article/hotsView.html" class="fr mr_5">更多</a></div>
 			</div>
 			<div class="mod_divider"></div>
 			<div class="mod">
@@ -40,11 +40,11 @@
 				<ul>
 					<#list hotsReply as article>
 						<li>
-							<a class="a_title" title="${article.title}" href="/article/${article.id}.html">${article.title}</a>
+							<a class="a_title" title="${article.title}" href="${path}/article/${article.id}.html">${article.title}</a>
 						</li>
 					</#list>
 				</ul>
-				<div class="of_h"><a href="/article/hotsReply.html" class="fr mr_5">更多</a></div>
+				<div class="of_h"><a href="${path}/article/hotsReply.html" class="fr mr_5">更多</a></div>
 			</div>
 			<div class="mod_divider"></div>
 			<div class="mod">
@@ -52,13 +52,13 @@
 				<ul>
 					<#list projects as project>
 						<li>
-							<a class="a_title" title="${project.name}" href="/project/${project.id}.html">${project.name}</a>
+							<a class="a_title" title="${project.name}" href="${path}/project/${project.id}.html">${project.name}</a>
 						</li>
 					</#list>
 					
 				</ul>
 				<#--
-				<div class="of_h"><a href="/article/hot.html" class="fr mr_5">更多</a></div>
+				<div class="of_h"><a href="${path}/article/hot.html" class="fr mr_5">更多</a></div>
 				-->
 			</div>
 			<div class="mod_divider"></div>
@@ -77,7 +77,7 @@
 					<#list comments as comment>
 						<li>
 							<span>用户:${comment.nick}</span>
-							内容:<a class="a_title" title="${comment.content}" href="/article/${comment.articleId}.html#comments">${comment.content}</a>
+							内容:<a class="a_title" title="${comment.content}" href="${path}/article/${comment.articleId}.html#comments">${comment.content}</a>
 						</li>
 					</#list>
 				</ul>
@@ -104,7 +104,7 @@
 					<li class="index_article">
 						<div>
 							[${article._type}]
-							<a title="${article.title}" class="a_title" href="/article/${article.id}.html">${article.title}</a>
+							<a title="${article.title}" class="a_title" href="${path}/article/${article.id}.html">${article.title}</a>
 							<span class="createDateTime">
 								( 发表于:${article._createDateTime} )
 							</span>
@@ -112,7 +112,7 @@
 						<div class="tags">
 							<strong>标签:</strong>
 							<#list article._tags as tag>
-								<a title="${tag}" href="/tag/${tag}.html" class="tag">
+								<a title="${tag}" href="${path}/tag/${tag}.html" class="tag">
 									${tag}
 								</a>
 							</#list>
@@ -122,7 +122,7 @@
 						</div>
 						<div class="viewCount">
 							阅读:(${article.viewCount}) | 评论:(${article.replyCount})
-							<a class="view" href="/article/${article.id}.html">查看全文&gt;&gt;</a>
+							<a class="view" href="${path}/article/${article.id}.html">查看全文&gt;&gt;</a>
 						</div>
 					</li>
 					</#list>

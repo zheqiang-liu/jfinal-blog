@@ -55,7 +55,7 @@
 			$('#message_content').focus();
 			return false;
 		}
-		$.post('/addMessageSubmit.html',{
+		$.post('${path}/addMessageSubmit.html',{
 			'message.email':email,
 			'message.content':content,
 			'message.nick':nick

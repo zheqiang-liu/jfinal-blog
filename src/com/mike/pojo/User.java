@@ -11,5 +11,7 @@ public class User extends Model<User>{
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
 
-
+	public String getUsername(){
+		return this.getStr("username");
+	}
 }
