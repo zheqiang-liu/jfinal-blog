@@ -1,54 +1,89 @@
 <#include "../layout.html"/>
-<#macro me_layout>
-	<style type="text/css">
-	.me_left{
-		margin-left: 10px;
-	}
-	.me_left .module{
-		margin-top: 20px;
-	}
-	.me_left .contacts li{
-		
-	}
-	.me_nav{
-		margin: 5px 0 0 20px;
-		line-height: 20px;
-		font-weight: bold;
-		font-size: 14px;
-	}
-	.me_nav a{
-		display: block;
-		padding: 5px;
-		color:green;
-	}
-</style>
-<@layout title="关于我">
-	<div class="fl me_left" style="width:200px;">
-		<ul class="me_nav">
-			<li><a href="/me.html">@ 我 @</a></li>
-			<li><a href="/me/introduce.html">@ 个人简介 @</a></li>
-			<li><a href="/me/experience.html">@ 经历 @</a></li>
-			<li><a href="/me/skill.html">@ 技能 @</a></li>
-		</ul>
-		<div class="mod_divider"></div>
-		<div class="module">
-			<h3>联系方式</h3>
-			<ul class="contacts">
-				<li>邮箱:<a href="">liuzheqiang511@126.com</a></li>
-				<li>QQ:<a href="">871005789</a></li>
+<#macro me_layout title="关于我">
+	<@layout title="${title}">
+		<style type="text/css">
+			.me_left{
+				margin-left: 10px;
+			}
+			.me_left .module{
+				margin-top: 20px;
+			}
+			.me_nav{
+				margin: 5px 0 0 20px;
+				line-height: 20px;
+				font-weight: bold;
+				font-size: 14px;
+			}
+			.me_nav a{
+				display: block;
+				padding: 5px;
+				color:green;
+			}
+		</style>
+		<div class="fl me_left" style="width:200px;">
+			<ul class="me_nav">
+				<li><a href="/me.html">@ 我 @</a></li>
+				<li><a href="/me/resume.html">@ 个人简介 @</a></li>
 			</ul>
-		</div>
-		<div class="mod_divider"></div>
-		<div class="module">
-			<h3>关于本站</h3>
-			<div>
-				Mike Liu个人开发的博客系统，用于记录生活学习的点滴。
+			<div class="mod_divider"></div>
+			<div class="module">
+				<h3>联系方式</h3>
+				<dl>
+					<dt>
+						邮箱:
+					</dt>
+					<dd>
+						<a href="mailto:liuzheqiang511@126.com?subject=from my blog">liuzheqiang511@126.com</a>
+					</dd>
+					<dt>
+						QQ:
+					</dt>
+					<dd>
+						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=871005789&site=qq&menu=yes">871005789</a>
+					</dd>
+				</dl>
+			</div>
+			<div class="mod_divider"></div>
+			<div class="module">
+				<h3>关于本站</h3>
+				<div>
+					<p>Mike Liu个人开发的博客系统，用于记录生活学习的点滴。</p>
+					<p>
+						使用了<a target="_blank" href="http://jquery.com/">jquery</a>库，其它的功能都是自己开发，包括TOP、拖动等
+					</p>
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="60">
+								后台架构:
+							</td>
+							<td>
+								<a target="_blank" href="http://www.oschina.net/p/jfinal">jFinal</a> 、Mysql
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								前台: 
+							</td>
+							<td>
+								自己手写DIV、CSS、JQUERY、JQUERY PLUGIN
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								其它: 
+							</td>
+							<td>
+								LESSC、COMPRESSOR JS
+							</td>
+						</tr>
+					</table>
+
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="fr" style="width:730px;">
-		<#nested>
-	</div>
-	<div class="clear"></div>
-</@layout>
+		<div class="fr" style="width:780px;">
+			<#nested>
+		</div>
+		<div class="clear"></div>
+	</@layout>
 </#macro>

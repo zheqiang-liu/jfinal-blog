@@ -7,8 +7,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.ehcache.CacheKit;
+import com.jfinal.util.StringKit;
 import com.mike.core.BlogConstants;
 import com.mike.email.Email;
+import com.mike.lucene.ArticleLuceneService;
 import com.mike.pojo.Article;
 import com.mike.pojo.Comment;
 import com.mike.pojo.Message;
@@ -39,7 +41,17 @@ public class IndexController extends Controller {
 		
 		render("index.html");
 	}
-	
+	public void search(){
+		String keyword = getPara("q");
+		Integer pageNo = getParaToInt("p", 1);
+		Page<Article> page = null;
+		if(!StringKit.isBlank(keyword)){
+			page = ArticleLuceneService.me().query(keyword, 10, pageNo);
+		}
+		setAttr("q", keyword);
+		setAttr("page", page);
+		render("article/search_articles.html");
+	}
 	public void addMessage(){
 		render("addMessage.html");
 	}

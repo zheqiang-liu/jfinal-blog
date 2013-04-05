@@ -19,11 +19,11 @@
 	</div>
 	<script type="text/javascript">
 		$('#add').click(function(){
-			$.post('/admin/user/addUser',$('#form').toJson(),function(data){
+			$.post(path + '/admin/user/addUser',$('#form').toJson(),function(data){
 				if(data.error){
 
 				}else{
-					location.href = "/admin/user/list.html";
+					location.href = path + "/admin/user/list.html";
 				}
 			});
 		});

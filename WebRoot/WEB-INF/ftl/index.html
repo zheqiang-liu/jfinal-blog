@@ -4,16 +4,18 @@
  	<tr>
  		<td width="240" valign="top" class="index_left widget">
 			<div class="mod me_info">
-				<h3>个人资料</h3>
+				<h3 class="mod_header"><span>个人资料</span></h3>
 				<div>
 					<div id="img" class="fl" title="刘哲强">
 					</div>
 					<div>
 						<h4>昵称:Mike Liu</h4>
-						<h4>兴趣:足球，编程</h4>
 						<h4>所在地:上海</h4>
-						<h4>工作:ABAP开发</h4>
-						<h4>QQ:871005789</h4>		
+						<h4>工作:JAVAEE开发</h4>
+						<h4>QQ:871005789</h4>	
+						<!--
+						<h4><a href="/me/resume.html">个人简历</a></h4>	
+						-->
 					</div>
 					<div class="clear">
 						<strong>最新动态:</strong>
@@ -22,9 +24,8 @@
 					
 				</div>
 			</div>
-			<div class="mod_divider"></div>
 			<div class="mod viewOrder">
-				<h3>阅读排行</h3>
+				<h3 class="mod_header"><span>阅读排行</span></h3>
 				<ul>
 					<#list hotsView as article>
 						<li>
@@ -34,9 +35,8 @@
 				</ul>
 				<div class="of_h"><a href="${path}/article/hotsView.html" class="fr mr_5">更多</a></div>
 			</div>
-			<div class="mod_divider"></div>
 			<div class="mod">
-				<h3>点评排行</h3>
+				<h3 class="mod_header"><span>点评排行</span></h3>
 				<ul>
 					<#list hotsReply as article>
 						<li>
@@ -46,9 +46,8 @@
 				</ul>
 				<div class="of_h"><a href="${path}/article/hotsReply.html" class="fr mr_5">更多</a></div>
 			</div>
-			<div class="mod_divider"></div>
 			<div class="mod">
-				<h3>博文项目</h3>
+				<h3 class="mod_header"><span>博文项目</span></h3>
 				<ul>
 					<#list projects as project>
 						<li>
@@ -61,18 +60,16 @@
 				<div class="of_h"><a href="${path}/article/hot.html" class="fr mr_5">更多</a></div>
 				-->
 			</div>
-			<div class="mod_divider"></div>
 			<div class="mod">
-				<h3>友情链接</h3>
+				<h3 class="mod_header"><span>友情链接</span></h3>
 				<ul>
 					<li>
 					   <a title="开源中国" href="http://www.oschina.net" target="_blank">开源中国</a>
 					</li>
 				</ul>
 			</div>
-			<div class="mod_divider"></div>
 			<div class="mod">
-				<h3>最新评论</h3>
+				<h3 class="mod_header"><span>最新评论</span></h3>
 				<ul>
 					<#list comments as comment>
 						<li>
@@ -82,9 +79,8 @@
 					</#list>
 				</ul>
 			</div>
-			<div class="mod_divider"></div>
 			<div class="mod message" id="recently_message">
-				<h3>最新留言</h3>
+				<h3 class="mod_header"><span>最新留言</span></h3>
 				<ul>
 					<#list messages as message>
 						<li>
@@ -99,7 +95,6 @@
  		<td valign="top">
  			<div class="fr" style="width:750px;">
 				<ul class="index_articles">
-					<li><h2 class="title">博文</h2></li>
 					<#list page_news.list as article>
 					<li class="index_article">
 						<div>

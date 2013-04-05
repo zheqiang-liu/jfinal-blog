@@ -4,9 +4,12 @@
 	    <title>${title}</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   		<meta http-equiv="Content-Language" content="zh-CN">
-	    <link href="/css/layout.css" rel="stylesheet" type="text/css">
-	    <script type="text/javascript" src="/js/jquery.js"></script>
-	    <script type="text/javascript" src="/js/layout.js"></script>
+	    <link href="${path}/css/layout.css" rel="stylesheet" type="text/css">
+	    <script type="text/javascript">
+	    	var path = '${path}';
+	    </script>
+	    <script type="text/javascript" src="${path}/js/jquery.js"></script>
+	    <script type="text/javascript" src="${path}/js/layout.js"></script>
 	</head>
 	<body>
 	    <div id="screen">
@@ -14,7 +17,7 @@
 	            <table width="100%" cellspacing="0" cellpadding="0" border="0">
 	        		<tr>
 	        			<td width="160">
-	        				<a href="/admin" id="logo"></a>
+	        				<a href="${path}/admin" id="logo"></a>
 	        			</td>
 	        			<td valign="bottom">
 							分享学习、工作中的经验
@@ -27,49 +30,49 @@
 	        </div>
 	        <div id="nav">
                  <div class="mainnav">
-                 	<a class="subnav" href="/admin/home.html">管理首页</a>
+                 	<a class="subnav" href="${path}/admin/home.html">管理首页</a>
                  </div>
                  <div class="mainnav">
-                 	<a class="subnav" href="/admin/user/list.html">用户管理</a>
+                 	<a class="subnav" href="${path}/admin/user/list.html">用户管理</a>
                  	<ul class="dropdown">
 					 <li>
-					 	<a href="/admin/user/list.html">所有用户</a>
+					 	<a href="${path}/admin/user/list.html">所有用户</a>
 					 </li>
 					 <li>
-					 	<a href="/admin/user/add.html">添加用户</a>
+					 	<a href="${path}/admin/user/add.html">添加用户</a>
 					 </li>
 					 <div class="clear"></div>
 					</ul>
                  </div>
                  <div class="mainnav">
-                 	<a class="subnav" href="/admin/article">博文管理</a>
+                 	<a class="subnav" href="${path}/admin/article">博文管理</a>
                  	<ul class="dropdown">
 					 <li>
-					 	<a href="/admin/article">所有博客</a>
+					 	<a href="${path}/admin/article">所有博客</a>
 					 </li>
 					 <li>
-					 	<a href="/admin/article/comments.html">所有评论</a>
+					 	<a href="${path}/admin/article/comments.html">所有评论</a>
 					 </li>
 					 <li>
-					 	<a href="/admin/article/add.html">添加博客</a>
+					 	<a href="${path}/admin/article/add.html">添加博客</a>
 					 </li>
 					 <li>
-					 	<a href="/admin/article/category.html">所有类别</a>
+					 	<a href="${path}/admin/article/category.html">所有类别</a>
 					 </li>
 					 <li>
-					 	<a href="/admin/article/project.html">所有工程</a>
+					 	<a href="${path}/admin/article/project.html">所有工程</a>
 					 </li>
 					 <div class="clear"></div>
 					</ul>
                  </div>
                  <div class="mainnav">
-                 	<a class="subnav" href="/admin/picture.html">图片管理</a>
+                 	<a class="subnav" href="${path}/admin/picture.html">图片管理</a>
                  	<ul class="dropdown">
 					 <li>
-					 	<a href="/admin/picture.html">图片目录</a>
+					 	<a href="${path}/admin/picture.html">图片目录</a>
 					 </li>
 					 <li>
-					 	<a href="/admin/picture/cleanTemp.html">清空临时目录</a>
+					 	<a href="${path}/admin/picture/cleanTemp.html">清空临时目录</a>
 					 </li>
 					 <div class="clear"></div>
 					</ul>
@@ -79,23 +82,14 @@
                  	<ul class="dropdown">
 					 <li>
 					 	<a
-					 	 href="/admin/message.html">查看留言</a>
+					 	 href="${path}/admin/message.html">查看留言</a>
 					 </li>
 					 <li>
-					 	<a href="/">网站首页</a>
+					 	<a href="${path}/">网站首页</a>
 					 </li>
 					 <div class="clear"></div>
 					</ul>
                  </div>
-                 <div class="mainnav">
-                 	<a class="subnav" href="/admin/api">API</a>
-                 	<ul class="dropdown">
-						 <li>
-						 	<a href="/admin/api/sap_class">SAP CLASS</a>
-						 </li>
-						 <div class="clear"></div>
-					</ul>
-                </div>
 	        </div>
 	        <div id="Content">
 	            <#nested>
@@ -105,7 +99,7 @@
 	    <iframe name="iframe" height="0" width="0" style="display:none;"></iframe>
 	    <div id="loding"></div>
 	    <div id="message"></div>
-	    <script type="text/javascript" src="/js/admin/index.js"></script>
+	    <script type="text/javascript" src="${path}/js/admin/index.js"></script>
 	</body>
 </html>
 </#macro>

@@ -1,6 +1,6 @@
-@bg_color:#FFF;
+@bg_color:#F9F9F9;
 /*start全局使用*/
-body,p,ul,li,input,textarea,ol,h1,h2,h3,h4,h5{
+body,p,ul,li,input,textarea,ol,h1,h2,h3,h4,h5,dl,dd,dt{
 	margin: 0px;
 	padding: 0px;
 }
@@ -8,12 +8,23 @@ body, button, input, textarea, .win-textarea, select, option {
     letter-spacing: 0.02em;
 }
 body {
-    color: #333333;
-    font-family: Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+    color: #333;
+    font-family: 'Microsoft YaHei', Arial, Tahoma, sans-serif;
     font-size: 13px;
     line-height: 20px;
-    background: #EEE;
+    background-color: @bg_color;
     text-align: center;
+}
+input,button{
+	padding: 3px 5px;
+	border:1px solid #CCC;
+}
+button:hover{
+	background-color: #333;
+	color:#FFF;
+}
+dd{
+	margin-left: 6px;
 }
 input,textarea{
 	border: 1px solid #2A4E26;
@@ -139,23 +150,25 @@ img.lazy{
 }
 /*end admin全局使用*/
 /*start 大总局样式*/
-#screen{
+.container{
 	width: 1000px;
 	margin: 0 auto;
 	text-align: left;
-	background-color: #FFF;
 }
 #header{
 	height: 80px;
-	background: #333;
 	color: #777;
+	background-color: @bg_color - #111;
 }
 #content{
-	padding-top: 18px;
-	background:#FFF url(/img/s/content_bg_img.png) left top repeat-x;
+	padding-top: 5px;
+}
+#links a{
+	font-size: 9pt;
+	margin-right: 6px;
 }
 #footer{
-	margin: 20px 0 40px 0;
+	padding-bottom: 80px;
 	text-align: center;
 }
 #message{
@@ -185,6 +198,31 @@ img.lazy{
 	background-position: left -50px;
 	border-color: #AAA;
 }
+#popup{
+	display: none;
+	width: 700px;
+	position: absolute;
+	text-align: left;
+	background: #FFF;
+	border: 1px solid #444;
+}
+#popup_close{
+	position: absolute;
+	top: -3px;
+	right: -32px;
+	cursor: pointer;
+}
+#popup_title{
+	cursor: move;
+	line-height: 30px;
+	height: 30px;
+	background: #444;
+	color:#FFF;
+	padding-left: 10px;
+}
+#popup_content{
+	padding: 2px 5px 5px 5px;
+}
 /*end 大总局样式*/
 /*start header*/
 #logo{
@@ -194,18 +232,17 @@ img.lazy{
 	font-size: 24px;
 	font-weight: bold;
 	display: block;
-	width: 200px;
 }
 #logo h3{
 	color: #777;
 }
 /*end header*/
 /*start 菜单样式*/
-@nav_bg_color:#333;
-@nav_bg_color_active:#555;
+@nav_bg_color:#4D504B;
+@nav_bg_color_active:@nav_bg_color + #666666;
 #nav{
-	height: 28px;
-	background: @nav_bg_color url(/img/s/nav_bg_img.png) repeat;
+	height: 32px;
+	background-color: @nav_bg_color;
 	padding: 0 10px;
 	.mainnav{
 		float: left;
@@ -218,8 +255,8 @@ img.lazy{
 	}
 	.subnav{
 		color: #FFF;
-		line-height: 28px;
-		height: 28px;
+		line-height: 32px;
+		height: 32px;
 		padding: 0 0 0 5px;
 		width: 60px;
 	}
@@ -229,7 +266,7 @@ img.lazy{
 	.dropdown{
 		z-index: 99999999;
 		position: absolute;
-		border:2px solid @nav_bg_color_active;
+		/*border:2px solid @nav_bg_color_active;*/
 		border-top-width: 0;
 		background: #FFF;
 		display: none;
@@ -246,8 +283,29 @@ img.lazy{
 	}
 	.dropdown a:hover{
 		background: @nav_bg_color_active;
-		color: #FFF;
+		color: #333;
+		font-weight: bold;
 	}
+}
+#search{
+	margin-right: 20px;
+}
+#search_ipt{
+	padding: 4px 5px;
+	height: 18px;
+	border: 1px solid #444;
+}
+#search_btn{
+	cursor: pointer;
+	padding: 0 10px;
+	height: 28px;
+	color: #FFF;
+	font-weight: bold;
+	background: #444;
+}
+#info{
+	text-align: center;
+	font-size: 20px;
 }
 /*end 菜单样式*/
 /*start tag 的样式 */
@@ -312,8 +370,7 @@ img.lazy{
 	}
 }
 .widget{
-	border-right: 1px solid #AAA;
-	background-color:#F7F7F7;
+	
 }
 .mod_divider{
 	background: #FFF url(/img/s/divider.png) no-repeat;
@@ -321,29 +378,33 @@ img.lazy{
 	margin: 7px 0;
 }
 .index_left{
-	padding-left: 5px;
 	.mod{
-		/*border: 1px solid @mod_title_bg_color;*/
 		/*fix ie 6 bug*/
 		width:238px;
 		overflow: hidden;
+		border: 1px solid #DDD;
+		margin-bottom: 10px;
 		/*fix ie 6 bug*/
-	}
-	h3{
-		font-size: 14px;
-		line-height: 22px;
-		height: 22px;
-		/*background: @mod_title_bg_color;*/
-		color: @mod_title_f_color;
-		padding: 0 0 0 3px;
+		.mod_header{
+			font-size: 14px;
+			line-height: 23px;
+			height: 23px;
+			color: @mod_title_f_color;
+			margin-bottom: 3px;
+			span{
+				padding: 4px 10px;
+				border-bottom: 1px solid #DDD;
+				border-right: 1px solid #DDD;
+			}
+		}
 	}
 	ul{
-		margin-left: 4px;
+		margin:0 4px;
 	}
 	li{
 		font-size: 12px;
 		padding: 1px 0 1px 20px;
-		background:#F7F7F7 url(/img/s/icon.png) no-repeat left center;
+		background:#FAFAFA url(/img/s/icon.png) no-repeat left center;
 		height: 20px;
 		overflow: hidden;
 	}
@@ -496,8 +557,8 @@ img.lazy{
 		}
 	}
 	.content{
+		color:#000;
 		padding: 8px 3px 15px 3px;
-		background-color: #FCFCFC;
 		a{
 			color: #00F;
 		}

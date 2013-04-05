@@ -17,7 +17,6 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.util.StringKit;
-import com.mike.controller.ApiController;
 import com.mike.controller.CategorySubController;
 import com.mike.controller.CategorySuperController;
 import com.mike.controller.IndexController;
@@ -30,6 +29,7 @@ import com.mike.controller.admin.PictureController;
 import com.mike.controller.admin.ProjectController;
 import com.mike.controller.admin.UserController;
 import com.mike.handler.HtmlExtensionHandler;
+import com.mike.lucene.ArticleLuceneService;
 import com.mike.pojo.Article;
 import com.mike.pojo.CategorySub;
 import com.mike.pojo.CategorySuper;
@@ -62,7 +62,6 @@ public class BlogConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		
 		me.add("/", IndexController.class);
-		me.add("/api", ApiController.class,"api");
 		me.add("/article", com.mike.controller.ArticleController.class,"article");
 		me.add("/categorySuper", CategorySuperController.class, "article");
 		me.add("/categorySub", CategorySubController.class, "article");
@@ -71,7 +70,6 @@ public class BlogConfig extends JFinalConfig {
 		me.add("/me", MeController.class, "me");
 		//backend
 		me.add("/admin", com.mike.controller.admin.IndexController.class,"admin");
-		me.add("/admin/api", com.mike.controller.admin.ApiController.class,"admin/api");
 		me.add("/admin/user", UserController.class, "admin/user");
 		me.add("/admin/article", ArticleController.class, "admin/article");
 		me.add("/admin/article/category", CategoryController.class,"admin/article/category");
@@ -119,7 +117,6 @@ public class BlogConfig extends JFinalConfig {
 
 	@Override
 	public void configInterceptor(Interceptors me) {
-
 	}
 
 	@Override
@@ -147,18 +144,12 @@ public class BlogConfig extends JFinalConfig {
 			System.out.println("ERROR:邮箱服务器为空!!!");
 		}
 		try {
-			FreeMarkerRender.getConfiguration().setSharedVariable("title",
-					BlogConstants.TITLE);
+			FreeMarkerRender.getConfiguration().setSharedVariable("title", BlogConstants.TITLE);
 		} catch (TemplateModelException e) {
 			log.error("set freemarkerrender share variable title failed", e);
 		}
 		updateCategorySuperList();
-		/*
-		 * 暂时不用lucene 以后加上 List<Article> articles =
-		 * Article.dao.find("select id,content from article"); for(Article
-		 * article:articles){ article.initToObject(); }
-		 * LuceneUtil.addArticles(articles);
-		 */
+		ArticleLuceneService.me().indexAll();
 	}
 
 	public static void updateCategorySuperList() {

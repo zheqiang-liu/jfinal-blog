@@ -12,11 +12,11 @@
 		$('#add').click(function(){
 			var data = {};
 			data['project.name'] = $('#project_name').val();
-			$.post('/admin/article/project/addProjectSubmit',data,function(data){
+			$.post('${path}/admin/article/project/addProjectSubmit',data,function(data){
 				if(data.error){
 
 				}else{
-					location.href = "/admin/article/project.html";
+					location.href = "${path}/admin/article/project.html";
 				}
 			});
 		});

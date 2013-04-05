@@ -26,11 +26,11 @@
 			data['categorySub.name'] = $('#categorySub_name').val();
 			data['categorySub.pId'] = $('#pId').val();
 			data['categorySub.order'] = $('#categorySub_order').val();
-			$.post('/admin/article/category/addCategorySubSubmit',data,function(data){
+			$.post('${path}/admin/article/category/addCategorySubSubmit',data,function(data){
 				if(data.error){
 
 				}else{
-					location.href = "/admin/article/category.html";
+					location.href = "${path}/admin/article/category.html";
 				}
 			});
 		});

@@ -44,6 +44,10 @@ $(window).load(function(){
 			$('#giveMeMessage').fadeIn();
 		}
 	});
+	$('#popup_close').click(function(){
+		$(window).unbind('scroll');
+		$('#popup').fadeOut();
+	});
 });
 
 function message(text){
@@ -58,4 +62,23 @@ function message(text){
 	setTimeout(function(){
 		$msg.fadeOut();
 	},2 * 1000);
+}
+
+function popup(title,html){
+	$(window).scroll(function(e){
+		$('#popup').stop().animate({
+			'top': $(window).scrollTop() + 150
+		},1000);
+	});
+	$('#popup_title').html(title);
+	$('#popup_content').html(html);
+	var left = ($(window).width() - 700 ) / 2.0;
+	var _top = $(window).scrollTop() - 500;
+	var top = $(window).scrollTop() + 150;
+	$('#popup').css({
+		'left':left,
+		'top': _top
+	}).show().animate({
+		'top':top
+	},1000);
 }

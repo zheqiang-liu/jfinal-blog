@@ -2,7 +2,7 @@
 <@layout>
 	<div>
 		<#if pFolder??>
-		 父目录: <a href="/admin/picture/open/${pFolder}.html">${pFolder}</a>
+		 父目录: <a href="${path}/admin/picture/open/${pFolder}.html">${pFolder}</a>
 		</#if>
 	</div>
 	<div class="table_row table_row_th">
@@ -26,9 +26,9 @@
 			</div>
 			<div class="span1">
 				<#if path??>
-					<a href="/admin/picture/open/${path}_${img.name}.html?pFolder=${path}">查看</a>
+					<a href="${path}/admin/picture/open/${path}_${img.name}.html?pFolder=${path}">查看</a>
 				<#else>
-					<a href="/admin/picture/open/${img.name}.html">查看</a>
+					<a href="${path}/admin/picture/open/${img.name}.html">查看</a>
 				</#if>
 				
 			</div>

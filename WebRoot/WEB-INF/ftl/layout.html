@@ -1,7 +1,7 @@
 <#macro layout  title keywords="abap,sap,mike,刘哲强,java,javscript,jfinal"
                 desc="主要关注abap,java,jfinal技术，分享学习工作中的经验">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-CN">
 	<head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   		<meta http-equiv="Content-Language" content="zh-CN">
@@ -17,36 +17,18 @@
 	    <script type="text/javascript" src="${path}/js/layout.js"></script>
 	</head>
 	<body>
-	    <div id="screen">
-	        <div id="header">
-	        	<table width="100%" cellspacing="0" cellpadding="0" border="0">
-	        		<tr>
-	        			<td width="20">
-
-	        			</td>
-	        			<td width="180">
-	        				<a href="${path}/" id="logo">
-	        					<h3>ABAP blog
-	        					</h3>
-	        				</a>
-	        			</td>
-	        			<td valign="bottom">
-	        				分享学习、工作中的经验
-	        			</td>
-	        		</tr>
-	        	</table>
-	        </div>
-	        <div id="nav">
+		<div id="nav">
+	        <div class="container">
 	        	<div class="mainnav">
-                 	<a class="subnav" href="${path}/">博客 |</a>
+	             	<a class="subnav" href="${path}/">博客 |</a>
 				</div>
 				<div class="mainnav">
 					<a class="subnav" href="${path}/">首页</a>
 				</div>
 				<#list categorySuperList as categorySuper>
 				<div class="mainnav">
-                 	<a class="subnav" href="${path}/categorySuper/${categorySuper.id}.html">${categorySuper.name}</a>
-                 	<ul class="dropdown">
+	             	<a class="subnav" href="${path}/categorySuper/${categorySuper.id}.html">${categorySuper.name}</a>
+	             	<ul class="dropdown">
 	                 	 <#list categorySuper.categorySubList as categorySub>
 						 <li>
 						 	<a href="${path}/categorySub/${categorySub.id}.html">${categorySub.name}</a>
@@ -54,37 +36,65 @@
 						 </#list>
 						 <div class="clear"></div>
 					</ul>
-                </div>
-                </#list>
-                <div class="mainnav">
-                 	<a class="subnav" href="${path}/api">API</a>
-                 	<ul class="dropdown">
-						 <li>
-						 	<a href="${path}/api/sap_class">SAP CLASS</a>
-						 </li>
-						 <div class="clear"></div>
-					</ul>
-                </div>
-                <div class="mainnav">
-                 	<a class="subnav" href="${path}/me.html">@ 我 @</a>
+	            </div>
+	            </#list>
+	            <div class="mainnav">
+	             	<a class="subnav" href="${path}/me.html">@ 我 @</a>
+				</div>
+				<div class="fr">
+					<form id="search" action="/search.html">
+						<input id="search_ipt" type="text" name="q" value="${q!}">
+						<button id="search_btn" type="submit">搜索</button>
+					</form>
 				</div>
 	        </div>
-	        <div id="content">
-	            <#nested>
+        </div>
+        <div id="header">
+        	<div class="container">
+		    	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		    		<tr>
+		    			<td width="20">
+
+		    			</td>
+		    			<td width="240">
+		    				<a href="${path}/" id="logo">
+		    					<h3>
+		    						Mike Liu 的博客
+		    					</h3>
+		    				</a>
+		    			</td>
+		    			<td valign="bottom">
+		    				分享学习、工作中的经验
+		    			</td>
+		    		</tr>
+		    	</table>
+        	</div>
+        </div>
+        <div id="content" class="container">
+            <#nested>
+        </div>
+        <div id="footer" class="container">
+        	<hr/>
+        	<div id="links">
+	        	<h3>友情链接</h3>
+	        	<a target="_blank" href="http://www.jyyiguang.com/">江阴亿光电子照明有限公司</a>
 	        </div>
-	        <div id="footer">
-	        	<hr/>
-	        	Author:Mike Liu <a href="${path}/admin" target="_blank">后台管理</a>
-	        	<div>
-	        		<script src="http://s19.cnzz.com/stat.php?id=4876176&web_id=4876176&show=pic" language="JavaScript">
-	        		</script>
-	        	</div>
-	        </div>
-	    </div>
+        	
+        	Author:Mike Liu <a href="${path}/admin" target="_blank">后台管理</a>
+        	<div>
+        		<script src="http://s19.cnzz.com/stat.php?id=4876176&web_id=4876176&show=pic" language="JavaScript">
+        		</script>
+        	</div>
+        </div>
 	    <div id="top">
 	    	
 	    </div>
 	    <div id="message"></div>
+	    <div id="popup">
+	    	<h3 id="popup_title"></h3>
+	    	<img src="/img/s/close.png" title="关闭" id="popup_close"/>
+	    	<div id="popup_content"></div>
+	    </div>
 	</body>
 </html>
 </#macro>
@@ -102,8 +112,8 @@
 			<li><a href="javascript:;" class="first disable">&lt;&lt;</a></li>
 			<li><a href="javascript:;" class="disable">&lt;</a></li>
 		<#else>
-			<li><a href="${prefix}?p=1" class="first">&lt;&lt;</a></li>
-			<li><a href="${prefix}?p=${pageNum-1}">&lt;</a></li>
+			<li><a href="?p=1${prefix}" class="first">&lt;&lt;</a></li>
+			<li><a href="?p=${pageNum-1}${prefix}">&lt;</a></li>
 		</#if>
 		<#if ( _totalPage - pageNum ) gt 6>
 			<#assign endIndex = ( pageNum + 6) />
@@ -120,7 +130,7 @@
 			<#if _pageNum == pageNum>
 				<a href="javascript:;" class="active">${_pageNum}</a>
 			<#else>
-				<a href="${prefix}?p=${_pageNum}">${_pageNum}</a>
+				<a href="?p=${_pageNum}${prefix}">${_pageNum}</a>
 			</#if>
 
 		</li>
@@ -129,8 +139,8 @@
 			<li><a href="javascript:;" class="disable">&gt;</a></li>
 			<li><a href="javascript:;" class="disable">&gt;&gt;</a></li>
 		<#else>
-			<li><a href="${prefix}?p=${pageNum+1}">&gt;</a></li>
-			<li><a href="${prefix}?p=${_totalPage}">&gt;&gt;</a></li>
+			<li><a href="?p=${pageNum+1}${prefix}">&gt;</a></li>
+			<li><a href="?p=${_totalPage}${prefix}">&gt;&gt;</a></li>
 		</#if>
 	</ul>
 	</#if>

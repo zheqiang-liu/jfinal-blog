@@ -23,11 +23,11 @@
 			var data = {};
 			data['categorySuper.name'] = $('#categorySuper_name').val();
 			data['categorySuper.order'] = $('#categorySuper_order').val();
-			$.post('/admin/article/category/addCategorySuperSubmit',data,function(data){
+			$.post('${path}/admin/article/category/addCategorySuperSubmit',data,function(data){
 				if(data.error){
 
 				}else{
-					location.href = "/admin/article/category.html";
+					location.href = "${path}/admin/article/category.html";
 				}
 			});
 		});

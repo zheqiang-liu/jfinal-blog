@@ -1,0 +1,64 @@
+<#include "../layout.html"/>
+<@layout title="${title}">
+<#if page??>
+<div id="articles">
+	<@pagination prefix="&q=${q!}" pageNum=page.pageNumber totalPage=page.totalPage/>
+	<#list page.list as article>
+		<div class="article">
+			<div class="left">
+				<h3 class="title">
+					[${article._type}]
+					<a href="${path}/article/${article.id}.html">${article.title}</a>
+				</h3>
+				<div class="content">
+					${article.brief}
+				</div>
+				<div class="tags">
+					<strong>标签:</strong>
+					<#list article._tags as tag>
+						<strong><a href="${path}/tag/${tag}.html">${tag}</a></strong>
+					</#list>
+				</div>
+			</div>
+			<div class="right">
+				<div class="createDateTime">
+					<div class="date fl">
+						${article.createDateTime?string('dd')}
+					</div>
+					<div class="month">${article.createDateTime?string('MMMM')}</div>
+					<div class="year">${article.createDateTime?string('yyyy')}</div>
+				</div>
+				<div>
+					<h4>类别:</h4>
+					<div>
+						<a href="${path}/categorySuper/${article.categorySub.pcategory.id}.html">    	  ${article.categorySub.pcategory.name}
+						</a>
+						-- 
+						<a href="${path}/categorySub/${article.categorySub.id}.html">					${article.categorySub.name}
+						</a>
+					</div>
+					<h4>项目:</h4>
+					<div>
+						<a href="${path}/project/${article.project.id}.html">
+							${article.project.name}
+						</a>
+					</div>
+					<h4>评论:</h4>
+					<div>
+						${article.replyCount} 条评论
+					</div>
+					<h4>阅读:</h4>
+					<div>
+						${article.viewCount} 次阅读
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</#list>
+	<@pagination prefix="&q=${q!}" pageNum=page.pageNumber totalPage=page.totalPage/>
+</div>
+<#else>
+	<div id="info">没有相应结果!!!</div>
+</#if>
+</@layout>

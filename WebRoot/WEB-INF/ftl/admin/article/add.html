@@ -67,7 +67,7 @@
 			display: none;
 		}
 	</style>
-	<script type="text/javascript" src="/editor/kindeditor-min.js"></script>
+	<script type="text/javascript" src="${path}/editor/kindeditor-min.js"></script>
 	<script type="text/javascript">
 		var editor;
 		KindEditor.ready(function(K) {
@@ -82,7 +82,7 @@
 					        'anchor', 'link', 'unlink','about'
 						],
 				resizeType:1,
-				uploadJson : '/admin/file/upload',
+				uploadJson : '${path}/admin/file/upload',
 				allowFileManager : false,
 				filterMode : false
 		      });
@@ -105,11 +105,11 @@
 			data['article.content'] = $('#article_content').val();
 			data['article.tags'] = $('#article_tags').val();
 			data['article.type'] = $('input[name=type]:checked').val();
-			$.post('/admin/article/addAtricle',data,function(data){
+			$.post('${path}/admin/article/addAtricle',data,function(data){
 				if(data.error){
 
 				}else{
-					location.href = "/admin/article.html";
+					location.href = "${path}/admin/article.html";
 				}
 			});
 		});

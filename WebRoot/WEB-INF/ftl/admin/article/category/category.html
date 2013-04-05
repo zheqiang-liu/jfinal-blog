@@ -1,7 +1,7 @@
 <#include "../../layout.html"/>
 <@layout>
 	<div>
-		<a href="/admin/article/category/refreshInMenu" target="iframe">刷新菜单</a>
+		<a href="${path}/admin/article/category/refreshInMenu" target="iframe">刷新菜单</a>
 	</div>
 	<#list categoryList as category>
 		<div class="table_row" data_id="${category.id}">
@@ -15,13 +15,13 @@
 				${category.order}
 			</div>
 			<div class="span1">
-				<a class="del" href="/admin/article/category/deleteCategorySuper/${category.id}.html">删除</a>
+				<a class="del" href="${path}/admin/article/category/deleteCategorySuper/${category.id}.html">删除</a>
 			</div>
 			<div class="span1">
-				<a href="/admin/article/category/editCategorySuper/${category.id}.html" target="iframe" onclick="open_dialog(this)">编辑</a>
+				<a href="${path}/admin/article/category/editCategorySuper/${category.id}.html" target="iframe" onclick="open_dialog(this)">编辑</a>
 			</div>
 			<div class="span2">
-				<a href="/admin/article/category/addCategorySub.html?pId=${category.id}" target="iframe" onclick="open_dialog(this)">添加子类别</a>
+				<a href="${path}/admin/article/category/addCategorySub.html?pId=${category.id}" target="iframe" onclick="open_dialog(this)">添加子类别</a>
 			</div>
 			<div clss="span1">
 				<button type="button" class="show_categorySub">显示子类别</button>
@@ -29,7 +29,7 @@
 		</div>
 	</#list>
 	<div>
-		<a onclick="open_dialog(this)" href="/admin/article/category/addCategorySuper.html" target="iframe">添加一级类别</a>
+		<a onclick="open_dialog(this)" href="${path}/admin/article/category/addCategorySuper.html" target="iframe">添加一级类别</a>
 	</div>
 	<style type="text/css">
 		.categorySub{
@@ -43,10 +43,10 @@
 			'<div class="span4">{category.name}</div>',
 			'<div class="span1">{category.order}</div>',
 			'<div class="span1">',
-			'<a class="del" href="/admin/article/category/deleteCategorySub/{category.id}.html">删除</a>',
+			'<a class="del" href="${path}/admin/article/category/deleteCategorySub/{category.id}.html">删除</a>',
 			'</div>',
 			'<div class="span1">',
-			'<a href="/admin/article/category/editCategorySub/{category.id}.html"',
+			'<a href="${path}/admin/article/category/editCategorySub/{category.id}.html"',
 			'target="iframe" onclick="open_dialog(this)">编辑</a></div>',
 		    '</div>'].join('');
 		$('.show_categorySub').toggle(function(){
@@ -54,7 +54,7 @@
 			var $row = $self.text('隐藏子类别').parent().parent();
 			var data = {};
 			data['pId'] = $row.attr('data_id');
-			$.getJSON('/admin/article/category/loadCategorySub.html',data,function(datas){
+			$.getJSON('${path}/admin/article/category/loadCategorySub.html',data,function(datas){
 				$row.after('<div></div>');
 				if(datas.length == 0){
 					alert('该类无子类别');

@@ -13,14 +13,14 @@
 				${project.finish}
 			</div>
 			<div class="span1">
-				<a class="del" href="/admin/article/project/deleteProject/${project.id}.html">删除</a>
+				<a class="del" href="${path}/admin/article/project/deleteProject/${project.id}.html">删除</a>
 			</div>
 			<div class="span1">
-				<a href="/admin/article/project/editProject/${project.id}.html" target="iframe" onclick="open_dialog(this)">编辑</a>
+				<a href="${path}/admin/article/project/editProject/${project.id}.html" target="iframe" onclick="open_dialog(this)">编辑</a>
 			</div>
 		</div>
 	</#list>
 	<div>
-		<a onclick="open_dialog(this)" href="/admin/article/project/addProject.html" target="iframe">添加项目</a>
+		<a onclick="open_dialog(this)" href="${path}/admin/article/project/addProject.html" target="iframe">添加项目</a>
 	</div>
 </@layout>

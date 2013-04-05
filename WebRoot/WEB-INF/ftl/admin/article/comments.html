@@ -38,7 +38,7 @@
 			if(!confirm('您真的要删除吗?')){
 				return false;
 			}
-			$.getJSON("/admin/article/deleteComment",{'id':$this.attr('data-id')},function(data){
+			$.getJSON("${path}/admin/article/deleteComment",{'id':$this.attr('data-id')},function(data){
 				if(data.error){
 
 				}else{

@@ -1,9 +1,9 @@
 <#include "../layout.html"/>
 <@layout>
 	<div>
-		文件夹:${path}  <a href="/admin/picture/download/${path}.html">下载</a>
+		文件夹:${path}  <a href="${path}/admin/picture/download/${path}.html">下载</a>
 		</br>
-		父目录: <a href="/admin/picture/open/${pFolder}.html">${pFolder}</a>
+		父目录: <a href="${path}/admin/picture/open/${pFolder}.html">${pFolder}</a>
 	</div>
 	<div class="table_row table_row_th">
 		<div class="span1">
@@ -25,7 +25,7 @@
 				${img.name}
 			</div>
 			<div class="span1">
-				<a class="del" href="/admin/picture/delete/${path}_${img.name}">删除</a>
+				<a class="del" href="${path}/admin/picture/delete/${path}_${img.name}">删除</a>
 			</div>
 		</div>
 	</#list>

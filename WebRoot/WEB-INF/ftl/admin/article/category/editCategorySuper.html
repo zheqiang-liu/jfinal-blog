@@ -26,11 +26,11 @@
 			data['categorySuper.id'] = ${categorySuper.id}
 			data['categorySuper.name'] = $('#category_name').val();
 			data['categorySuper.order'] = $('#category_order').val();
-			$.post('/admin/article/category/editCategorySuperSubmit',data,function(data){
+			$.post('${path}/admin/article/category/editCategorySuperSubmit',data,function(data){
 				if(data.error){
 
 				}else{
-					location.href = "/admin/article/category.html";
+					location.href = "${path}/admin/article/category.html";
 				}
 			});
 		});

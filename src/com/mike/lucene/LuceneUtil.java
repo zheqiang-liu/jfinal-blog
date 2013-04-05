@@ -2,24 +2,17 @@ package com.mike.lucene;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.Field.Index;
-import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
+import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-import org.jsoup.Jsoup;
 import org.wltea.analyzer.lucene.IKAnalyzer;
-
-import com.mike.pojo.Article;
 
 public class LuceneUtil {
 	private static File saveDir = new File("temp/lucene");
@@ -30,41 +23,7 @@ public class LuceneUtil {
 	static {
 		try {
 			dir = FSDirectory.open(saveDir);
-			cfg.setOpenMode(OpenMode.CREATE_OR_APPEND);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void addArticle(Article article) {
-		Document doc = new Document();
-		doc.add(new Field("id", article.getInt(Article.ID).toString(), Store.YES, Index.NO));
-		doc.add(new Field("content", Jsoup.parse(article.getStr(Article.CONTENT)).text(), Store.NO,
-				Index.ANALYZED_NO_NORMS));
-		IndexWriter iw = getIW();
-		try {
-			iw.addDocument(doc);
-			iw.close();
-		} catch (CorruptIndexException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void addArticles(List<Article> articles) {
-		IndexWriter iw = getIW();
-		try {
-			for (Article article : articles) {
-				Document doc = new Document();
-				doc.add(new Field("id", article.getInt(Article.ID).toString(), Store.YES, Index.NO));
-				doc.add(new Field("content", Jsoup.parse(article.getStr(Article.CONTENT)).text(), Store.NO,
-						Index.ANALYZED_NO_NORMS));
-				iw.addDocument(doc);
-			}
-			iw.close();
-		} catch (CorruptIndexException e) {
-			e.printStackTrace();
+			cfg.setOpenMode(OpenMode.CREATE);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,4 +38,40 @@ public class LuceneUtil {
 		}
 		return iw;
 	}
+
+	public static void closeIW(IndexWriter iw) {
+		if (iw != null) {
+			try {
+				iw.close();
+			} catch (CorruptIndexException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	public static IndexSearcher getIS() {
+		IndexSearcher is = null;
+		try {
+			is = new IndexSearcher(dir, true);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return is;
+	}
+
+	public static void closeIS(IndexSearcher is) {
+		if (is != null) {
+			try {
+				is.close();
+			} catch (CorruptIndexException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

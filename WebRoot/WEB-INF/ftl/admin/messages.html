@@ -44,7 +44,7 @@
 			if(!confirm('您真的要删除吗?')){
 				return false;
 			}
-			$.getJSON("/admin/deleteMessage.html",{'id':$this.attr('data-id')},function(data){
+			$.getJSON(path + "/admin/deleteMessage.html",{'id':$this.attr('data-id')},function(data){
 				if(data.error){
 
 				}else{

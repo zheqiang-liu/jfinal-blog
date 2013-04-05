@@ -20,12 +20,12 @@
 	    		<span id="info"></span>
 	    	</p>
 	    </div>
-	    <script type="text/javascript" src="/js/jquery.js"></script>
-	    <script type="text/javascript" src="/js/sha1.js"></script>
+	    <script type="text/javascript" src="${path}/js/jquery.js"></script>
+	    <script type="text/javascript" src="${path}/js/sha1.js"></script>
 	    <script type="text/javascript">
 	    	$('#login').click(function(){
 	    		$.ajax({
-	    			url:'/admin/login',
+	    			url:'${path}/admin/login',
 	    			type:'post',
 	    			dataType:'json',
 	    			data:{
